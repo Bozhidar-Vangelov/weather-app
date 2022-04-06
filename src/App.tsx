@@ -1,7 +1,8 @@
 import './App.css';
+import CurrentWeather from './modules/CurrentWeather/CurrentWeather';
 
 const App = () => {
-  return <div>Weather app</div>;
+  return <CurrentWeather />;
 };
 
 export default App;
