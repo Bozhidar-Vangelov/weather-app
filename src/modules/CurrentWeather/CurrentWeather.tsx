@@ -17,7 +17,7 @@ const CurrentWeather = () => {
 
   useEffect(() => {
     if (latitude && longitude)
-      dispatch(fetchCurrentWeather(latitude, longitude));
+      dispatch(fetchCurrentWeather(undefined, latitude, longitude));
   }, [dispatch, latitude, longitude]);
 
   if (loading || isEmpty(currentWeatherInfo)) {
@@ -28,10 +28,18 @@ const CurrentWeather = () => {
     return <div>ERROR</div>;
   }
 
-  console.log(currentWeatherInfo);
+  const handleOnSubmit = (event: any) => {
+    event.preventDefault();
+    dispatch(fetchCurrentWeather(event.target.test.value, latitude, longitude));
+  };
 
   return (
     <div>
+      <form onSubmit={handleOnSubmit}>
+        <button type='submit'>GET WEATHER</button>
+        <input type='text' name='test' />
+      </form>
+
       <div>City: {currentWeatherInfo.name}</div>
       <div>Feels like: {currentWeatherInfo.main.feels_like}</div>
       <div>Humidity: {currentWeatherInfo.main.humidity}</div>

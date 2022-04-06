@@ -48,12 +48,14 @@ export const currentWeatherSelector = (state: RootState) =>
   state.currentWeather;
 
 export const fetchCurrentWeather =
-  (latitude: number, longitude: number) => async (dispatch: Dispatch) => {
+  (city?: string, latitude?: number, longitude?: number) =>
+  async (dispatch: Dispatch) => {
     dispatch(fetchCurrentWeatherInit());
 
     try {
       const { data } = await axios.get(CURRENT_WEATHER_URL, {
         params: {
+          q: city,
           lat: latitude,
           lon: longitude,
           appid: API_ID,
