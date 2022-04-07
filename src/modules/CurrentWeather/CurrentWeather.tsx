@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { isEmpty } from 'lodash';
+import { isEmpty, debounce } from 'lodash';
 
 import { useLocationHook } from '../../shared/hooks/useLocationHook';
 import {
@@ -8,7 +8,7 @@ import {
   fetchCurrentWeather,
 } from './currentWeatherSlice';
 
-const CurrentWeather = () => {
+const CurrentWeather: React.FC = () => {
   const dispatch = useDispatch();
   const { latitude, longitude } = useLocationHook();
   const { loading, error, currentWeatherInfo } = useSelector(
@@ -20,6 +20,17 @@ const CurrentWeather = () => {
       dispatch(fetchCurrentWeather(undefined, latitude, longitude));
   }, [dispatch, latitude, longitude]);
 
+  const handleSearch = (value: any) => {
+    dispatch(fetchCurrentWeather(value));
+    console.log('change');
+  };
+
+  const delayedHandleChange = useCallback(debounce(handleSearch, 1000), []);
+
+  const handleOnChange = (event: any) => {
+    delayedHandleChange(event.target.value);
+  };
+
   if (loading || isEmpty(currentWeatherInfo)) {
     return <div>LOADING</div>;
   }
@@ -28,18 +39,9 @@ const CurrentWeather = () => {
     return <div>ERROR</div>;
   }
 
-  const handleOnSubmit = (event: any) => {
-    event.preventDefault();
-    dispatch(fetchCurrentWeather(event.target.test.value, latitude, longitude));
-  };
-
   return (
     <div>
-      <form onSubmit={handleOnSubmit}>
-        <button type='submit'>GET WEATHER</button>
-        <input type='text' name='test' />
-      </form>
-
+      <input type='text' name='test' onChange={handleOnChange} />
       <div>City: {currentWeatherInfo.name}</div>
       <div>Feels like: {currentWeatherInfo.main.feels_like}</div>
       <div>Humidity: {currentWeatherInfo.main.humidity}</div>
