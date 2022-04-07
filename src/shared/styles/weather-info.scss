@@ -1,0 +1,14 @@
+.weather {
+  display: block;
+
+  .weather-info-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    .main-weather-info,
+    .secondary-weather-info {
+      flex-direction: column;
+    }
+  }
+}

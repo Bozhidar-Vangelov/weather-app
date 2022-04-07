@@ -1,6 +1,10 @@
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty, debounce } from 'lodash';
+import { Space, Input, Spin } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWind, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import dayjs from 'dayjs';
 
 import { useLocationHook } from '../../shared/hooks/useLocationHook';
 import {
@@ -22,41 +26,85 @@ const CurrentWeather: React.FC = () => {
 
   const handleSearch = (value: any) => {
     dispatch(fetchCurrentWeather(value));
-    console.log('change');
   };
 
-  const delayedHandleChange = useCallback(debounce(handleSearch, 1000), []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const delayedHandleChange = useCallback(debounce(handleSearch, 650), []);
 
   const handleOnChange = (event: any) => {
     delayedHandleChange(event.target.value);
   };
 
   if (loading || isEmpty(currentWeatherInfo)) {
-    return <div>LOADING</div>;
+    return <p>LOADING</p>;
   }
 
   if (error) {
-    return <div>ERROR</div>;
+    return <p>ERROR</p>;
   }
 
+  const sunrise: any = dayjs.unix(currentWeatherInfo.sys.sunrise);
+  const sunset: any = dayjs.unix(currentWeatherInfo.sys.sunset);
+
   return (
-    <div>
-      <input type='text' name='test' onChange={handleOnChange} />
-      <div>City: {currentWeatherInfo.name}</div>
-      <div>Feels like: {currentWeatherInfo.main.feels_like}</div>
-      <div>Humidity: {currentWeatherInfo.main.humidity}</div>
-      <div>Pressure: {currentWeatherInfo.main.pressure}</div>
-      <div>Temperature: {currentWeatherInfo.main.temp}</div>
-      <div>Sunrise: {currentWeatherInfo.sys.sunrise}</div>
-      <div>Main weather: {currentWeatherInfo.weather[0].main}</div>
-      <div>
-        Main weather description: {currentWeatherInfo.weather[0].description}
-      </div>
-      <div>Wind Speed: {currentWeatherInfo.wind.speed}</div>
-      <div>Wind Degrees: {currentWeatherInfo.wind.deg}</div>
-      <div>Clouds %: {currentWeatherInfo.clouds.all}</div>
-      <div>Country: {currentWeatherInfo.sys.country}</div>
-    </div>
+    <Space className='weather' direction='vertical'>
+      <Space className='search-input-container'>
+        <Input
+          type='text'
+          name='city'
+          prefix={
+            <FontAwesomeIcon className='search-icon' icon={faMagnifyingGlass} />
+          }
+          size='large'
+          placeholder='Enter a city name'
+          onChange={handleOnChange}
+          className='search-input'
+        />
+      </Space>
+      <Spin spinning={false}>
+        <Space
+          className='weather-info weather-info-container'
+          // style={{ border: '3px solid black' }}
+        >
+          <Space
+            className='weather-info main-weather-info'
+            // style={{ border: '3px solid red' }}
+          >
+            <p>
+              {currentWeatherInfo.name}, {currentWeatherInfo.sys.country}
+            </p>
+            <p>{currentWeatherInfo.weather[0].description}</p>
+
+            <p>
+              <img
+                src={`http://openweathermap.org/img/wn/${currentWeatherInfo.weather[0].icon}@2x.png`}
+                alt='img'
+              />
+              {currentWeatherInfo.main.temp}°C
+            </p>
+            <p>Feels like: {currentWeatherInfo.main.feels_like}</p>
+            <p>
+              <FontAwesomeIcon icon={faWind} /> {currentWeatherInfo.wind.speed}{' '}
+              m/s
+            </p>
+            <p>Clouds {currentWeatherInfo.clouds.all}%</p>
+          </Space>
+          <Space
+            className='weather-info secondary-weather-info'
+            // style={{ border: '3px solid green' }}
+          >
+            <p>Humidity: {currentWeatherInfo.main.humidity}</p>
+            <p>Pressure: {currentWeatherInfo.main.pressure}</p>
+            <p>
+              Sunrise: {sunrise.$H}:{sunrise.$m}
+            </p>
+            <p>
+              Sunset: {sunset.$H}:{sunset.$m}
+            </p>
+          </Space>
+        </Space>
+      </Spin>
+    </Space>
   );
 };
 

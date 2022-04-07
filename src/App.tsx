@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import CurrentWeather from './modules/CurrentWeather/CurrentWeather';
 
 const App = () => {
