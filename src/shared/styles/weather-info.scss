@@ -4,7 +4,11 @@
   .weather-info-container {
     display: flex;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: space-around;
+    background-image: url('https://media.istockphoto.com/photos/nimbus-moving-picture-id1023201682?k=20&m=1023201682&s=612x612&w=0&h=6TFOldyp5HPtCqUzSM0KKAFR5zPPB8mxBa14J2CbA6o=');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    color: white;
 
     .main-weather-info,
     .secondary-weather-info {

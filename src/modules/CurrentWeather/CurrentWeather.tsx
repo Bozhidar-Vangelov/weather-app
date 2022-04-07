@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty, debounce } from 'lodash';
 import { Space, Input, Spin } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWind, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import {
+  faWind,
+  faMagnifyingGlass,
+  faCloud,
+} from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 
 import { useLocationHook } from '../../shared/hooks/useLocationHook';
@@ -43,8 +47,11 @@ const CurrentWeather: React.FC = () => {
     return <p>ERROR</p>;
   }
 
+  console.log(currentWeatherInfo);
+
   const sunrise: any = dayjs.unix(currentWeatherInfo.sys.sunrise);
   const sunset: any = dayjs.unix(currentWeatherInfo.sys.sunset);
+  const temperature: string = currentWeatherInfo.main.temp.toFixed(1);
 
   return (
     <Space className='weather' direction='vertical'>
@@ -64,34 +71,42 @@ const CurrentWeather: React.FC = () => {
       <Spin spinning={false}>
         <Space
           className='weather-info weather-info-container'
-          // style={{ border: '3px solid black' }}
+          style={{ border: '3px solid black' }}
         >
           <Space
             className='weather-info main-weather-info'
-            // style={{ border: '3px solid red' }}
+            style={{ border: '3px solid red' }}
           >
-            <p>
-              {currentWeatherInfo.name}, {currentWeatherInfo.sys.country}
-            </p>
             <p>{currentWeatherInfo.weather[0].description}</p>
 
-            <p>
-              <img
-                src={`http://openweathermap.org/img/wn/${currentWeatherInfo.weather[0].icon}@2x.png`}
-                alt='img'
-              />
-              {currentWeatherInfo.main.temp}°C
-            </p>
             <p>Feels like: {currentWeatherInfo.main.feels_like}</p>
             <p>
               <FontAwesomeIcon icon={faWind} /> {currentWeatherInfo.wind.speed}{' '}
               m/s
             </p>
-            <p>Clouds {currentWeatherInfo.clouds.all}%</p>
+            <p>
+              <FontAwesomeIcon icon={faCloud} /> Clouds{' '}
+              {currentWeatherInfo.clouds.all}%
+            </p>
+          </Space>
+          <Space
+            className='weather-info main-weather-info'
+            style={{ border: '3px solid pink' }}
+          >
+            <p>
+              {currentWeatherInfo.name}, {currentWeatherInfo.sys.country}
+            </p>
+            <div>
+              <img
+                src={`http://openweathermap.org/img/wn/${currentWeatherInfo.weather[0].icon}@2x.png`}
+                alt='img'
+              />
+              {temperature}°C
+            </div>
           </Space>
           <Space
             className='weather-info secondary-weather-info'
-            // style={{ border: '3px solid green' }}
+            style={{ border: '3px solid green' }}
           >
             <p>Humidity: {currentWeatherInfo.main.humidity}</p>
             <p>Pressure: {currentWeatherInfo.main.pressure}</p>
