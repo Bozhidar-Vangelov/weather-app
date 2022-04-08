@@ -1,13 +1,14 @@
 import { FC } from 'react';
 import { Space, Spin } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWind, faCloud } from '@fortawesome/free-solid-svg-icons';
+
 import dayjs from 'dayjs';
 
 import { CurrentWeatherInfo } from './types';
 import { useSelector } from 'react-redux';
 import { currentWeatherSelector } from './currentWeatherSlice';
 import NotFound from '../../shared/components/NotFound';
+import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 interface CurrentWeatherProps {
   currentWeatherInfo: CurrentWeatherInfo;
@@ -38,11 +39,11 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ currentWeatherInfo }) => {
 
               <p>Feels like: {currentWeatherInfo.main.feels_like}</p>
               <p>
-                <FontAwesomeIcon icon={faWind} />{' '}
+                <FontAwesomeIcon icon={solid('wind')} />{' '}
                 {currentWeatherInfo.wind.speed} m/s
               </p>
               <p>
-                <FontAwesomeIcon icon={faCloud} /> Clouds{' '}
+                <FontAwesomeIcon icon={solid('cloud')} /> Clouds{' '}
                 {currentWeatherInfo.clouds.all}%
               </p>
             </Space>
@@ -66,13 +67,21 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ currentWeatherInfo }) => {
               className='weather-info secondary-weather-info'
               style={{ border: '3px solid green' }}
             >
-              <p>Humidity: {currentWeatherInfo.main.humidity}</p>
-              <p>Pressure: {currentWeatherInfo.main.pressure}</p>
               <p>
-                Sunrise: {sunrise.$H}:{sunrise.$m}
+                <FontAwesomeIcon icon={solid('droplet')} /> Humidity:{' '}
+                {currentWeatherInfo.main.humidity}
               </p>
               <p>
-                Sunset: {sunset.$H}:{sunset.$m}
+                <FontAwesomeIcon icon={solid('stopwatch')} /> Pressure:{' '}
+                {currentWeatherInfo.main.pressure}
+              </p>
+              <p>
+                <FontAwesomeIcon icon={regular('sun')} /> Sunrise: {sunrise.$H}:
+                {sunrise.$m}
+              </p>
+              <p>
+                <FontAwesomeIcon icon={solid('sun')} /> Sunrise: {sunset.$H}:
+                {sunset.$m}
               </p>
             </Space>
           </>

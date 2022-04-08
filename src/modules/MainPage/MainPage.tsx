@@ -36,7 +36,7 @@ const MainPage: React.FC = () => {
   console.log(currentWeatherInfo);
 
   return (
-    <Spin spinning={loading}>
+    <Spin spinning={loading && isEmpty(currentWeatherInfo)}>
       <Space className='main-container' direction='vertical'>
         <Space className='search-input-container'>
           <Input
