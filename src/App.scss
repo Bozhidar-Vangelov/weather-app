@@ -3,7 +3,14 @@
 
 @import './shared/styles/mainPage.scss';
 @import './shared/styles/weatherInfo.scss';
+@import './shared/styles/notFound.scss';
 
 body {
   font-family: 'Noto Sans Mono', monospace;
+  background-image: url('https://images.pexels.com/photos/314726/pexels-photo-314726.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  // background-image: url('https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: auto;
+  height: auto;
 }
