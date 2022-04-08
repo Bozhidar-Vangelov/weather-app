@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isEmpty, debounce } from 'lodash';
 import { Space, Input, Spin } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
 import { useLocationHook } from '../../shared/hooks/useLocationHook';
 import {
@@ -11,6 +11,7 @@ import {
   fetchCurrentWeather,
 } from '../CurrentWeather/currentWeatherSlice';
 import CurrentWeather from '../CurrentWeather/CurrentWeather';
+import { fetchAllCities } from '../../shared/slices/allCities/allCitiesSlice';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const MainPage: React.FC = () => {
   useEffect(() => {
     if (latitude && longitude)
       dispatch(fetchCurrentWeather(undefined, latitude, longitude));
+    dispatch(fetchAllCities());
   }, [dispatch, latitude, longitude]);
 
   const handleSearch = (value: any) => {
@@ -33,8 +35,6 @@ const MainPage: React.FC = () => {
     delayedHandleChange(event.target.value);
   };
 
-  console.log(currentWeatherInfo);
-
   return (
     <Spin spinning={loading && isEmpty(currentWeatherInfo)}>
       <Space className='main-container' direction='vertical'>
@@ -43,7 +43,10 @@ const MainPage: React.FC = () => {
             type='text'
             name='city'
             prefix={
-              <FontAwesomeIcon className='search-icon' icon={faLocationDot} />
+              <FontAwesomeIcon
+                className='search-icon'
+                icon={solid('location-dot')}
+              />
             }
             size='large'
             placeholder='Enter a city name'
