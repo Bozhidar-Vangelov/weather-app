@@ -1,8 +1,8 @@
 import './App.scss';
-import CurrentWeather from './modules/CurrentWeather/CurrentWeather';
+import MainPage from './modules/MainPage/MainPage';
 
 const App = () => {
-  return <CurrentWeather />;
+  return <MainPage />;
 };
 
 export default App;
