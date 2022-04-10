@@ -11,12 +11,16 @@ import {
   fetchCurrentWeather,
 } from '../CurrentWeather/currentWeatherSlice';
 import CurrentWeather from '../CurrentWeather/CurrentWeather';
-import { fetchAllCities } from '../../shared/slices/allCities/allCitiesSlice';
+import {
+  allCitiesSelector,
+  fetchAllCities,
+} from '../../shared/slices/allCities/allCitiesSlice';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
   const { latitude, longitude } = useLocationHook();
   const { loading, currentWeatherInfo } = useSelector(currentWeatherSelector);
+  const { citiesOptions } = useSelector(allCitiesSelector);
 
   useEffect(() => {
     if (latitude && longitude)
@@ -24,7 +28,13 @@ const MainPage: React.FC = () => {
     dispatch(fetchAllCities());
   }, [dispatch, latitude, longitude]);
 
-  const handleSearch = (value: any) => {
+  const handleSearch = (value: string) => {
+    const searchValue = citiesOptions.filter((city) =>
+      city.city.startsWith(value)
+    );
+
+    console.log(searchValue);
+
     dispatch(fetchCurrentWeather(value));
   };
 
