@@ -20,24 +20,21 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ currentWeatherInfo }) => {
   const sunrise: any = dayjs.unix(currentWeatherInfo.sys.sunrise);
   const sunset: any = dayjs.unix(currentWeatherInfo.sys.sunset);
   const temperature: number = Number(currentWeatherInfo.main.temp.toFixed(1));
+  const feelsLike: number = Number(
+    currentWeatherInfo.main.feels_like.toFixed(1)
+  );
 
   return (
     <Spin spinning={loading}>
-      <Space
-        className='weather-info weather-info-container'
-        style={{ border: '3px solid black' }}
-      >
+      <Space className='weather-info weather-info-container'>
         {error ? (
           <NotFound />
         ) : (
           <>
-            <Space
-              className='weather-info secondary-weather-info'
-              style={{ border: '3px solid red' }}
-            >
+            <Space className='weather-info secondary-weather-info'>
               <p>{currentWeatherInfo.weather[0].description}</p>
 
-              <p>Feels like: {currentWeatherInfo.main.feels_like}</p>
+              <p>Feels like: {feelsLike}°C</p>
               <p>
                 <FontAwesomeIcon icon={solid('wind')} />{' '}
                 {currentWeatherInfo.wind.speed} m/s
@@ -47,10 +44,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ currentWeatherInfo }) => {
                 {currentWeatherInfo.clouds.all}%
               </p>
             </Space>
-            <Space
-              className='weather-info main-weather-info'
-              style={{ border: '3px solid pink' }}
-            >
+            <Space className='weather-info main-weather-info'>
               <p>
                 {currentWeatherInfo.name}, {currentWeatherInfo.sys.country}
               </p>
@@ -63,10 +57,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ currentWeatherInfo }) => {
                 {temperature}°C
               </div>
             </Space>
-            <Space
-              className='weather-info secondary-weather-info'
-              style={{ border: '3px solid green' }}
-            >
+            <Space className='weather-info secondary-weather-info'>
               <p>
                 <FontAwesomeIcon icon={solid('droplet')} /> Humidity:{' '}
                 {currentWeatherInfo.main.humidity}
