@@ -1,14 +1,10 @@
 import { FC, useCallback, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { debounce } from 'lodash';
 import { Space, AutoComplete } from 'antd';
 
-import { SelectOption } from '../../shared/slices/allCities/types';
 import { fetchCurrentWeather } from '../CurrentWeather/currentWeatherSlice';
-
-interface SearchBarProps {
-  citiesOptions: SelectOption[];
-}
+import { allCitiesSelector } from '../../shared/slices/allCities/allCitiesSlice';
 
 interface SelectOptions {
   value: string;
@@ -16,15 +12,17 @@ interface SelectOptions {
   key: string;
 }
 
-const SearchBar: FC<SearchBarProps> = ({ citiesOptions }) => {
+const SearchBar: FC = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
   const [options, setOptions] = useState<SelectOptions[]>([]);
 
+  const { citiesOptions } = useSelector(allCitiesSelector);
+
   const handleOnSearch = (searchText: string) => {
     if (searchText.length > 2) {
       const userOptions: SelectOptions[] = citiesOptions
-        .filter((city) => city.city.startsWith(searchText))
+        .filter((option) => option.city.startsWith(searchText))
         .map((cityOption, index) => ({
           key: `${index}-${cityOption.city}`,
           value: `${cityOption.city}, ${cityOption.country}, ${cityOption.iso2}`,
@@ -106,6 +104,8 @@ const SearchBar: FC<SearchBarProps> = ({ citiesOptions }) => {
         placeholder='Enter a city name...'
         value={value}
         className='search-bar'
+        notFoundContent='City not found'
+        allowClear
       />
     </Space>
   );

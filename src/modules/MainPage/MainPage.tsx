@@ -9,27 +9,27 @@ import {
   fetchCurrentWeather,
 } from '../CurrentWeather/currentWeatherSlice';
 import CurrentWeather from '../CurrentWeather/CurrentWeather';
-import {
-  allCitiesSelector,
-  fetchAllCities,
-} from '../../shared/slices/allCities/allCitiesSlice';
 import SearchBar from '../SearchBar/SearchBar';
+import { fetchAllCities } from '../../shared/slices/allCities/allCitiesSlice';
+import { searchBarOptions } from '../SearchBar/searchBarSlice';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
   const { latitude, longitude } = useLocationHook();
-  const { currentWeatherInfo } = useSelector(currentWeatherSelector);
-  const { citiesOptions, loading } = useSelector(allCitiesSelector);
+  const { currentWeatherInfo, loading } = useSelector(currentWeatherSelector);
 
   useEffect(() => {
     if (latitude && longitude)
       dispatch(fetchCurrentWeather(undefined, latitude, longitude));
-    dispatch(fetchAllCities());
   }, [dispatch, latitude, longitude]);
+
+  useEffect(() => {
+    dispatch(fetchAllCities());
+  }, [dispatch]);
 
   return (
     <Spin spinning={loading && isEmpty(currentWeatherInfo)}>
-      <SearchBar citiesOptions={citiesOptions} />
+      <SearchBar />
       <Space className='main-container' direction='vertical'>
         {!isEmpty(currentWeatherInfo) ? (
           <CurrentWeather currentWeatherInfo={currentWeatherInfo} />
