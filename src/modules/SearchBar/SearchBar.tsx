@@ -12,6 +12,8 @@ interface SearchBarProps {
 
 interface SelectOptions {
   value: string;
+  label: JSX.Element;
+  key: string;
 }
 
 const SearchBar: FC<SearchBarProps> = ({ citiesOptions }) => {
@@ -23,9 +25,29 @@ const SearchBar: FC<SearchBarProps> = ({ citiesOptions }) => {
     if (searchText.length > 2) {
       const userOptions: SelectOptions[] = citiesOptions
         .filter((city) => city.city.startsWith(searchText))
-        .map((cityOption) => ({
+        .map((cityOption, index) => ({
+          key: `${index}-${cityOption.city}`,
           value: `${cityOption.city}, ${cityOption.country}, ${cityOption.iso2}`,
+          label: (
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+              }}
+            >
+              {cityOption.city}, {cityOption.country}, {cityOption.iso2}
+              <span style={{ width: '15px', height: '15px' }}>
+                <img
+                  src={`https://flagcdn.com/16x12/${cityOption.iso2.toLowerCase()}.png`}
+                  alt=''
+                  style={{ width: '15px', height: '15px' }}
+                />
+              </span>
+            </div>
+          ),
         }));
+
+      console.log(userOptions);
 
       setOptions([...userOptions]);
     } else {
@@ -41,14 +63,37 @@ const SearchBar: FC<SearchBarProps> = ({ citiesOptions }) => {
     delayedHandleChange(value);
   };
 
-  const handleOnSelect = (city: string) => {
+  const handleOnSelect = (data: string) => {
+    const [city, country, isoCode] = data.split(', ');
+
     dispatch(fetchCurrentWeather(city));
 
-    //sets value to city name
-    setValue(city.split(', ')[0]);
+    setValue(city);
 
     //sets options to single entry with current selected city
-    setOptions([{ value: city }]);
+    setOptions([
+      {
+        value: city,
+        label: (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            {city}, {country}, {isoCode}
+            <span style={{ width: '15px', height: '15px' }}>
+              <img
+                src={`https://flagcdn.com/16x12/${isoCode.toLowerCase()}.png`}
+                alt=''
+                style={{ width: '15px', height: '15px' }}
+              />
+            </span>
+          </div>
+        ),
+        key: '1',
+      },
+    ]);
   };
 
   return (
