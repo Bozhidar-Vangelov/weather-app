@@ -8,9 +8,10 @@ import {
   currentWeatherSelector,
   fetchCurrentWeather,
 } from '../CurrentWeather/currentWeatherSlice';
+import { fetchAllCities } from '../../shared/slices/allCities/allCitiesSlice';
 import CurrentWeather from '../CurrentWeather/CurrentWeather';
 import SearchBar from '../SearchBar/SearchBar';
-import { fetchAllCities } from '../../shared/slices/allCities/allCitiesSlice';
+import WeatherForecast from '../WeatherOptions/WeatherForecast';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ const MainPage: React.FC = () => {
           <></>
         )}
       </Space>
+      <WeatherForecast />
     </Spin>
   );
 };
