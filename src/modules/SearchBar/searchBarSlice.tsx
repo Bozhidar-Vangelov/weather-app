@@ -1,12 +1,9 @@
 import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
+import { SelectOptionsState, SelectOptionUI } from './types';
 
 import { RootState } from '../../shared/store/configureStore';
 
-interface SelectOptions {
-  options: [];
-}
-
-const initialState: SelectOptions = {
+const initialState: SelectOptionsState = {
   options: [],
 };
 
@@ -14,7 +11,7 @@ const searchBarSlice = createSlice({
   name: 'searchBar',
   initialState: initialState,
   reducers: {
-    setSearchBarOptions(state, action: PayloadAction<[]>) {
+    setSearchBarOptions(state, action: PayloadAction<SelectOptionUI[]>) {
       state.options = action.payload;
     },
     resetSearchBarOptions: () => initialState,
@@ -35,7 +32,7 @@ export const searchBarOptions =
     const citiesOptions = allCities.citiesOptions;
 
     //TODO: Set type
-    const userOptions: any = citiesOptions
+    const userOptions: SelectOptionUI[] = citiesOptions
       .filter((option) =>
         option.city.toLowerCase().startsWith(searchText.toLowerCase())
       )
