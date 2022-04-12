@@ -11,7 +11,6 @@ import {
 import CurrentWeather from '../CurrentWeather/CurrentWeather';
 import SearchBar from '../SearchBar/SearchBar';
 import { fetchAllCities } from '../../shared/slices/allCities/allCitiesSlice';
-import { searchBarOptions } from '../SearchBar/searchBarSlice';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
