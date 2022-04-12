@@ -8,6 +8,7 @@ import {
   searchBarOptions,
   searchBarOptionsSelector,
 } from './searchBarSlice';
+import { fetchCurrentWeather } from '../CurrentWeather/currentWeatherSlice';
 
 const SearchBar: FC = () => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const SearchBar: FC = () => {
 
   const handleOnSelect = (data: string) => {
     const [city] = data.split(', ');
+    dispatch(fetchCurrentWeather(city));
     dispatch(searchBarOptions(city));
     setValue(city);
   };
