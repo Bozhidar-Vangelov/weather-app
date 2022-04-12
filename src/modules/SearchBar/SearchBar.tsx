@@ -12,14 +12,17 @@ import { fetchCurrentWeather } from '../CurrentWeather/currentWeatherSlice';
 
 const SearchBar: FC = () => {
   const dispatch = useDispatch();
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState<string>('');
+  const [notFoundContent, setNotFoundContent] = useState<string>('');
 
   const { options } = useSelector(searchBarOptionsSelector);
 
   const handleOnSearch = (searchText: string) => {
     if (searchText.length > 2) {
+      setNotFoundContent('City not found');
       dispatch(searchBarOptions(searchText));
     } else {
+      setNotFoundContent('Please enter at least 3 symbols');
       dispatch(resetSearchBarOptions());
     }
   };
@@ -48,7 +51,7 @@ const SearchBar: FC = () => {
         placeholder='Enter a city name...'
         value={value}
         className='search-bar'
-        notFoundContent='City not found'
+        notFoundContent={notFoundContent}
         allowClear
       />
     </Space>
