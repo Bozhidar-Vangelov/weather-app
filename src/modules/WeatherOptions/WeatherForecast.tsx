@@ -7,7 +7,6 @@ import SevenDays from './features/sevenDays/SevenDays';
 import Weekend from './features/weekend/Weekend';
 import NotFound from '../../shared/components/NotFound';
 import { forecastTabs } from '../../shared/utils/forecastTabs';
-import { useState } from 'react';
 
 const renderForecast = (forecast: ForecastTypes): JSX.Element => {
   switch (forecast.name) {
