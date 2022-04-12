@@ -36,7 +36,9 @@ export const searchBarOptions =
 
     //TODO: Set type
     const userOptions: any = citiesOptions
-      .filter((option) => option.city.startsWith(searchText))
+      .filter((option) =>
+        option.city.toLowerCase().startsWith(searchText.toLowerCase())
+      )
       .map((cityOption, index) => ({
         key: `${index}-${cityOption.city}`,
         value: `${cityOption.city}, ${cityOption.country}, ${cityOption.iso2}`,
