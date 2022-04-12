@@ -14,7 +14,6 @@ const searchBarSlice = createSlice({
   name: 'searchBar',
   initialState: initialState,
   reducers: {
-    //TODO: Set action type
     setSearchBarOptions(state, action: PayloadAction<[]>) {
       state.options = action.payload;
     },
@@ -42,18 +41,12 @@ export const searchBarOptions =
         key: `${index}-${cityOption.city}`,
         value: `${cityOption.city}, ${cityOption.country}, ${cityOption.iso2}`,
         label: (
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-            }}
-          >
+          <div className='search-bar-options-container'>
             {cityOption.city}, {cityOption.country}, {cityOption.iso2}
-            <span style={{ width: '15px', height: '15px' }}>
+            <span>
               <img
                 src={`https://flagcdn.com/16x12/${cityOption.iso2.toLowerCase()}.png`}
-                alt=''
-                style={{ width: '15px', height: '15px' }}
+                alt='flag'
               />
             </span>
           </div>
