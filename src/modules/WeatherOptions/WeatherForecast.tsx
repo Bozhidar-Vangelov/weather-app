@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { Tabs } from 'antd';
 
 import { ForecastEnum, ForecastTypes } from '../../shared/types/forecastTypes';
@@ -7,6 +8,7 @@ import SevenDays from './features/sevenDays/SevenDays';
 import Weekend from './features/weekend/Weekend';
 import NotFound from '../../shared/components/NotFound';
 import { forecastTabs } from '../../shared/utils/forecastTabs';
+import { currentWeatherSelector } from '../CurrentWeather/currentWeatherSlice';
 
 const renderForecast = (forecast: ForecastTypes): JSX.Element => {
   switch (forecast.name) {
@@ -24,10 +26,16 @@ const renderForecast = (forecast: ForecastTypes): JSX.Element => {
 };
 
 const WeatherForecast: React.FC = () => {
+  const { hasFetched } = useSelector(currentWeatherSelector);
+
   const { TabPane } = Tabs;
 
   function callback(key: any) {
     console.log(key);
+  }
+
+  if (!hasFetched) {
+    return <div>LOADING</div>;
   }
 
   return (
