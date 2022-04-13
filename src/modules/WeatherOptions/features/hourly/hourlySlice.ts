@@ -44,7 +44,7 @@ const {
   fetchHourlyForecastFailure,
 } = hourlySlice.actions;
 
-export const hourlyForecastSelector = (state: RootState) => state.fiveDays;
+export const hourlyForecastSelector = (state: RootState) => state.hourly;
 
 export const fetchHourlyForecast =
   (lat: number, lon: number) => async (dispatch: Dispatch) => {
@@ -61,7 +61,11 @@ export const fetchHourlyForecast =
         },
       });
 
-      dispatch(fetchHourlyForecastSuccess(data));
+      const twentyFourHoursInfo = data.hourly.slice(0, 24);
+
+      console.log(twentyFourHoursInfo);
+
+      dispatch(fetchHourlyForecastSuccess(twentyFourHoursInfo));
     } catch (error) {
       dispatch(fetchHourlyForecastFailure(error));
     }
