@@ -39,7 +39,7 @@ const WeatherForecast: React.FC = () => {
   }
 
   return (
-    <Tabs onChange={callback}>
+    <Tabs onChange={callback} destroyInactiveTabPane={true}>
       {forecastTabs.map((forecast) => (
         <TabPane tab={forecast.name} key={forecast.name}>
           {renderForecast(forecast)}

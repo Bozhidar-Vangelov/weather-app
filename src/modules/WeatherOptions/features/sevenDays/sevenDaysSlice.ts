@@ -33,6 +33,7 @@ const sevenDaysSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    resetSevenDaysForecastState: () => initialState,
   },
 });
 
@@ -43,6 +44,8 @@ const {
   fetchSevenDaysForecastSuccess,
   fetchSevenDaysForecastFailure,
 } = sevenDaysSlice.actions;
+
+export const { resetSevenDaysForecastState } = sevenDaysSlice.actions;
 
 export const sevenDaysForecastSelector = (state: RootState) =>
   state.sevenDaysForecast;

@@ -2,7 +2,11 @@ import { Space } from 'antd';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentWeatherSelector } from '../../../CurrentWeather/currentWeatherSlice';
-import { fetchWeekendForecast, weekendForecastSelector } from './weekendSlice';
+import {
+  fetchWeekendForecast,
+  resetWeekendForecastState,
+  weekendForecastSelector,
+} from './weekendSlice';
 
 const Weekend = () => {
   const dispatch = useDispatch();
@@ -12,6 +16,10 @@ const Weekend = () => {
 
   useEffect(() => {
     dispatch(fetchWeekendForecast(lat, lon));
+
+    return () => {
+      dispatch(resetWeekendForecastState());
+    };
   }, [dispatch, lat, lon]);
 
   if (!hasFetched) {

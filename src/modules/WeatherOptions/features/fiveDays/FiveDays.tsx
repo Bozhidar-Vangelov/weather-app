@@ -5,6 +5,7 @@ import { currentWeatherSelector } from '../../../CurrentWeather/currentWeatherSl
 import {
   fetchFiveDaysForecast,
   fiveDaysForecastSelector,
+  resetFiveDaysForecastState,
 } from './fiveDaysSlice';
 
 const FiveDays = () => {
@@ -17,6 +18,10 @@ const FiveDays = () => {
 
   useEffect(() => {
     dispatch(fetchFiveDaysForecast(lat, lon));
+
+    return () => {
+      dispatch(resetFiveDaysForecastState());
+    };
   }, [dispatch, lat, lon]);
 
   if (!hasFetched) {

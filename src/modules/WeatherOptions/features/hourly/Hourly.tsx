@@ -2,7 +2,11 @@ import { Carousel } from 'antd';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currentWeatherSelector } from '../../../CurrentWeather/currentWeatherSlice';
-import { fetchHourlyForecast, hourlyForecastSelector } from './hourlySlice';
+import {
+  fetchHourlyForecast,
+  hourlyForecastSelector,
+  resetHourlyForecastState,
+} from './hourlySlice';
 
 const Hourly = () => {
   const dispatch = useDispatch();
@@ -12,6 +16,10 @@ const Hourly = () => {
 
   useEffect(() => {
     dispatch(fetchHourlyForecast(lat, lon));
+
+    return () => {
+      dispatch(resetHourlyForecastState());
+    };
   }, [dispatch, lat, lon]);
 
   if (!hasFetched) {

@@ -33,6 +33,7 @@ const weekendSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    resetWeekendForecastState: () => initialState,
   },
 });
 
@@ -43,6 +44,8 @@ const {
   fetchWeekendForecastSuccess,
   fetchWeekendForecastFailure,
 } = weekendSlice.actions;
+
+export const { resetWeekendForecastState } = weekendSlice.actions;
 
 export const weekendForecastSelector = (state: RootState) =>
   state.weekendForecast;

@@ -33,6 +33,7 @@ const hourlySlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    resetHourlyForecastState: () => initialState,
   },
 });
 
@@ -43,6 +44,8 @@ const {
   fetchHourlyForecastSuccess,
   fetchHourlyForecastFailure,
 } = hourlySlice.actions;
+
+export const { resetHourlyForecastState } = hourlySlice.actions;
 
 export const hourlyForecastSelector = (state: RootState) =>
   state.hourlyForecast;

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { currentWeatherSelector } from '../../../CurrentWeather/currentWeatherSlice';
 import {
   fetchSevenDaysForecast,
+  resetSevenDaysForecastState,
   sevenDaysForecastSelector,
 } from './sevenDaysSlice';
 
@@ -17,6 +18,10 @@ const SevenDays = () => {
 
   useEffect(() => {
     dispatch(fetchSevenDaysForecast(lat, lon));
+
+    return () => {
+      dispatch(resetSevenDaysForecastState());
+    };
   }, [dispatch, lat, lon]);
 
   if (!hasFetched) {
