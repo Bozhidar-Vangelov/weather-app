@@ -15,7 +15,7 @@ const initialState: HourlyState = {
 };
 
 const hourlySlice = createSlice({
-  name: 'hourly',
+  name: 'hourlyForecast',
   initialState: initialState,
   reducers: {
     fetchHourlyForecastInit(state) {
@@ -36,7 +36,7 @@ const hourlySlice = createSlice({
   },
 });
 
-export const { reducer: hourlyReducer } = hourlySlice;
+export const { reducer: hourlyForecastReducer } = hourlySlice;
 
 const {
   fetchHourlyForecastInit,
@@ -44,7 +44,8 @@ const {
   fetchHourlyForecastFailure,
 } = hourlySlice.actions;
 
-export const hourlyForecastSelector = (state: RootState) => state.hourly;
+export const hourlyForecastSelector = (state: RootState) =>
+  state.hourlyForecast;
 
 export const fetchHourlyForecast =
   (lat: number, lon: number) => async (dispatch: Dispatch) => {

@@ -15,7 +15,7 @@ const initialState: FiveDaysForecastState = {
 };
 
 const fiveDaysSlice = createSlice({
-  name: 'fiveDaysWeather',
+  name: 'fiveDaysForecast',
   initialState: initialState,
   reducers: {
     fetchFiveDaysForecastInit(state) {
@@ -36,7 +36,7 @@ const fiveDaysSlice = createSlice({
   },
 });
 
-export const { reducer: fiveDaysWeatherReducer } = fiveDaysSlice;
+export const { reducer: fiveDaysForecastReducer } = fiveDaysSlice;
 
 const {
   fetchFiveDaysForecastInit,
@@ -44,7 +44,8 @@ const {
   fetchFiveDaysForecastFailure,
 } = fiveDaysSlice.actions;
 
-export const fiveDaysForecastSelector = (state: RootState) => state.fiveDays;
+export const fiveDaysForecastSelector = (state: RootState) =>
+  state.fiveDaysForecast;
 
 export const fetchFiveDaysForecast =
   (lat: number, lon: number) => async (dispatch: Dispatch) => {
