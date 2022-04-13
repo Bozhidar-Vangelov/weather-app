@@ -62,7 +62,7 @@ export const fetchSevenDaysForecast =
         },
       });
 
-      const sevenDaysInfo = data.daily;
+      const sevenDaysInfo = data.daily.slice(0, 7);
 
       dispatch(fetchSevenDaysForecastSuccess(sevenDaysInfo));
     } catch (error) {
