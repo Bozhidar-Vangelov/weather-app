@@ -6,7 +6,7 @@ export interface SevenDaysForecastState {
 }
 
 export interface SevenDaysForecast {
-  dt: number;
+  dt: string;
   sunrise: number;
   sunset: number;
   moonrise: number;

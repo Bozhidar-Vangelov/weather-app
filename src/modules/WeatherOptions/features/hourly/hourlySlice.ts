@@ -1,5 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
+import moment from 'moment';
 
 import { config } from '../../../../shared/utils/config';
 import { RootState } from '../../../../shared/store/configureStore';
@@ -65,10 +66,12 @@ export const fetchHourlyForecast =
         },
       });
 
-      const twentyFourHoursInfo = data.hourly.slice(0, 24).map((day: any) => ({
-        ...day,
-        dt: new Date(day.dt * 1000).toLocaleTimeString('en-GB'),
-      }));
+      const twentyFourHoursInfo = data.hourly
+        .slice(0, 24)
+        .map((day: Hourly) => ({
+          ...day,
+          dt: moment.unix(Number(day.dt)).format('HH:mm'),
+        }));
 
       dispatch(fetchHourlyForecastSuccess(twentyFourHoursInfo));
     } catch (error) {

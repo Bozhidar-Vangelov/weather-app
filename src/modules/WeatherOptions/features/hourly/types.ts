@@ -6,7 +6,7 @@ export interface HourlyState {
 }
 
 export interface Hourly {
-  dt: number;
+  dt: string;
   temp: number;
   feels_like: number;
   pressure: number;

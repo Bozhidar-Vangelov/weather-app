@@ -41,8 +41,8 @@ export interface CurrentWeatherInfo {
     id: number;
     message: number;
     country: string;
-    sunrise: number;
-    sunset: number;
+    sunrise: string;
+    sunset: string;
   };
   timezone: number;
   id: number;

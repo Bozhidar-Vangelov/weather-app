@@ -1,5 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
+import moment from 'moment';
 
 import { config } from '../../shared/utils/config';
 import { RootState } from '../../shared/store/configureStore';
@@ -67,17 +68,8 @@ export const fetchCurrentWeather =
         ...data,
         sys: {
           ...data.sys,
-          sunrise: new Date(data.sys.sunrise * 1000).toLocaleTimeString(
-            'en-GB',
-            {
-              hour: '2-digit',
-              minute: '2-digit',
-            }
-          ),
-          sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString('en-GB', {
-            hour: '2-digit',
-            minute: '2-digit',
-          }),
+          sunrise: moment.unix(data.sys.sunrise).format('HH:mm'),
+          sunset: moment.unix(data.sys.sunset).format('HH:mm'),
         },
 
         main: {

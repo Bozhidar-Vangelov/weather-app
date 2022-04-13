@@ -1,5 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
+import moment from 'moment';
 
 import { config } from '../../../../shared/utils/config';
 import { RootState } from '../../../../shared/store/configureStore';
@@ -65,10 +66,17 @@ export const fetchWeekendForecast =
         },
       });
 
-      const weekendInfo = data.daily.slice(0, 3).map((day: any) => ({
-        ...day,
-        dt: new Date(day.dt * 1000).toLocaleDateString('en-GB'),
-      }));
+      const weekendInfo = data.daily
+        .map((day: WeekendForecast) => ({
+          ...day,
+          dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
+        }))
+        .filter(
+          (day: WeekendForecast) =>
+            day.dt.startsWith('Fri') ||
+            day.dt.startsWith('Sat') ||
+            day.dt.startsWith('Sun')
+        );
 
       dispatch(fetchWeekendForecastSuccess(weekendInfo));
     } catch (error) {

@@ -1,5 +1,6 @@
 import { createSlice, Dispatch } from '@reduxjs/toolkit';
 import axios from 'axios';
+import moment from 'moment';
 
 import { config } from '../../../../shared/utils/config';
 import { RootState } from '../../../../shared/store/configureStore';
@@ -65,10 +66,12 @@ export const fetchSevenDaysForecast =
         },
       });
 
-      const sevenDaysInfo = data.daily.slice(0, 7).map((day: any) => ({
-        ...day,
-        dt: new Date(day.dt * 1000).toLocaleDateString('en-GB'),
-      }));
+      const sevenDaysInfo = data.daily
+        .slice(0, 7)
+        .map((day: SevenDaysForecast) => ({
+          ...day,
+          dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
+        }));
 
       dispatch(fetchSevenDaysForecastSuccess(sevenDaysInfo));
     } catch (error) {
