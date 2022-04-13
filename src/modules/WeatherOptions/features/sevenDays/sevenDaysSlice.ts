@@ -65,7 +65,10 @@ export const fetchSevenDaysForecast =
         },
       });
 
-      const sevenDaysInfo = data.daily.slice(0, 7);
+      const sevenDaysInfo = data.daily.slice(0, 7).map((day: any) => ({
+        ...day,
+        dt: new Date(day.dt * 1000).toLocaleDateString('en-GB'),
+      }));
 
       dispatch(fetchSevenDaysForecastSuccess(sevenDaysInfo));
     } catch (error) {

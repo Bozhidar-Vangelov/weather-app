@@ -65,7 +65,10 @@ export const fetchFiveDaysForecast =
         },
       });
 
-      const fiveDaysInfo = data.daily.slice(0, 5);
+      const fiveDaysInfo = data.daily.slice(0, 5).map((day: any) => ({
+        ...day,
+        dt: new Date(day.dt * 1000).toLocaleDateString('en-GB'),
+      }));
 
       dispatch(fetchFiveDaysForecastSuccess(fiveDaysInfo));
     } catch (error) {

@@ -2,8 +2,6 @@ import { FC } from 'react';
 import { Space, Spin } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import dayjs from 'dayjs';
-
 import { CurrentWeatherInfo } from './types';
 import { useSelector } from 'react-redux';
 import { currentWeatherSelector } from './currentWeatherSlice';
@@ -17,13 +15,6 @@ interface CurrentWeatherProps {
 const CurrentWeather: FC<CurrentWeatherProps> = ({ currentWeatherInfo }) => {
   const { loading, error } = useSelector(currentWeatherSelector);
 
-  const sunrise: any = dayjs.unix(currentWeatherInfo.sys.sunrise);
-  const sunset: any = dayjs.unix(currentWeatherInfo.sys.sunset);
-  const temperature: number = Number(currentWeatherInfo.main.temp.toFixed(1));
-  const feelsLike: number = Number(
-    currentWeatherInfo.main.feels_like.toFixed(1)
-  );
-
   return (
     <Spin spinning={loading}>
       <Space className='weather-info weather-info-container'>
@@ -34,7 +25,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ currentWeatherInfo }) => {
             <Space className='weather-info secondary-weather-info'>
               <p>{currentWeatherInfo.weather[0].description}</p>
 
-              <p>Feels like: {feelsLike}°C</p>
+              <p>Feels like: {currentWeatherInfo.main.feels_like}°C</p>
               <p>
                 <FontAwesomeIcon icon={solid('wind')} />{' '}
                 {currentWeatherInfo.wind.speed} m/s
@@ -54,7 +45,7 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ currentWeatherInfo }) => {
                   src={`http://openweathermap.org/img/wn/${currentWeatherInfo.weather[0].icon}@2x.png`}
                   alt='img'
                 />
-                {temperature}°C
+                {currentWeatherInfo.main.temp}°C
               </div>
             </Space>
             <Space className='weather-info secondary-weather-info'>
@@ -67,12 +58,12 @@ const CurrentWeather: FC<CurrentWeatherProps> = ({ currentWeatherInfo }) => {
                 {currentWeatherInfo.main.pressure}
               </p>
               <p>
-                <FontAwesomeIcon icon={regular('sun')} /> Sunrise: {sunrise.$H}:
-                {sunrise.$m}
+                <FontAwesomeIcon icon={regular('sun')} /> Sunrise:{' '}
+                {currentWeatherInfo.sys.sunrise}
               </p>
               <p>
-                <FontAwesomeIcon icon={solid('sun')} /> Sunrise: {sunset.$H}:
-                {sunset.$m}
+                <FontAwesomeIcon icon={solid('sun')} /> Sunset:{' '}
+                {currentWeatherInfo.sys.sunset}
               </p>
             </Space>
           </>

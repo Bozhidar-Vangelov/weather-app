@@ -65,7 +65,10 @@ export const fetchWeekendForecast =
         },
       });
 
-      const weekendInfo = data.daily.slice(0, 2);
+      const weekendInfo = data.daily.slice(0, 3).map((day: any) => ({
+        ...day,
+        dt: new Date(day.dt * 1000).toLocaleDateString('en-GB'),
+      }));
 
       dispatch(fetchWeekendForecastSuccess(weekendInfo));
     } catch (error) {

@@ -65,9 +65,10 @@ export const fetchHourlyForecast =
         },
       });
 
-      const twentyFourHoursInfo = data.hourly.slice(0, 24);
-
-      console.log(twentyFourHoursInfo);
+      const twentyFourHoursInfo = data.hourly.slice(0, 24).map((day: any) => ({
+        ...day,
+        dt: new Date(day.dt * 1000).toLocaleTimeString('en-GB'),
+      }));
 
       dispatch(fetchHourlyForecastSuccess(twentyFourHoursInfo));
     } catch (error) {

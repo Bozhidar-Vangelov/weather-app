@@ -63,7 +63,31 @@ export const fetchCurrentWeather =
         },
       });
 
-      dispatch(fetchCurrentWeatherSuccess(data));
+      const currentWeather = {
+        ...data,
+        sys: {
+          ...data.sys,
+          sunrise: new Date(data.sys.sunrise * 1000).toLocaleTimeString(
+            'en-GB',
+            {
+              hour: '2-digit',
+              minute: '2-digit',
+            }
+          ),
+          sunset: new Date(data.sys.sunset * 1000).toLocaleTimeString('en-GB', {
+            hour: '2-digit',
+            minute: '2-digit',
+          }),
+        },
+
+        main: {
+          ...data.main,
+          feels_like: Number(data.main.feels_like.toFixed(1)),
+          temp: Number(data.main.temp.toFixed(1)),
+        },
+      };
+
+      dispatch(fetchCurrentWeatherSuccess(currentWeather));
     } catch (error) {
       dispatch(fetchCurrentWeatherFailure(error));
     }
