@@ -5,6 +5,7 @@ import { searchBarReducer } from '../../modules/SearchBar/searchBarSlice';
 import { fiveDaysForecastReducer } from '../../modules/WeatherOptions/features/fiveDays/fiveDaysSlice';
 import { hourlyForecastReducer } from '../../modules/WeatherOptions/features/hourly/hourlySlice';
 import { sevenDaysForecastReducer } from '../../modules/WeatherOptions/features/sevenDays/sevenDaysSlice';
+import { weekendForecastReducer } from '../../modules/WeatherOptions/features/weekend/weekendSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     fiveDaysForecast: fiveDaysForecastReducer,
     hourlyForecast: hourlyForecastReducer,
     sevenDaysForecast: sevenDaysForecastReducer,
+    weekendForecast: weekendForecastReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
