@@ -1,0 +1,43 @@
+.hourly-container {
+  margin: 0 2em;
+  display: flex;
+  overflow: scroll;
+}
+
+.hourly-card {
+  margin: 1em;
+  border: none;
+
+  border-radius: 5%;
+  font-weight: bold;
+  background-image: radial-gradient(
+    circle 248px at center,
+    #16d9e3 0%,
+    #30c7ec 47%,
+    #46aef7 100%
+  );
+  box-shadow: 3px 3px 5px 0px #00000085;
+
+  .ant-card-meta-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: rgb(82, 82, 82);
+    border-bottom: 2px solid black;
+    padding-bottom: 0.5em;
+  }
+
+  .hourly-card-description {
+    font-size: 1.5em;
+    text-transform: capitalize;
+    margin: 1em 0 1em 0;
+  }
+
+  .ant-card-body {
+    width: 20em;
+    text-align: center;
+  }
+
+  > * {
+    color: rgb(82, 82, 82);
+  }
+}

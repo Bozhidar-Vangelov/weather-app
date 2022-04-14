@@ -1,6 +1,9 @@
-import { Carousel } from 'antd';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Card, Space } from 'antd';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
+
 import { currentWeatherSelector } from '../../../CurrentWeather/currentWeatherSlice';
 import {
   fetchHourlyForecast,
@@ -26,58 +29,44 @@ const Hourly = () => {
     return <div>LOADING</div>;
   }
 
-  const first = hourly.slice(0, 6);
-  const second = hourly.slice(6, 12);
-  const third = hourly.slice(12, 18);
-  const fourth = hourly.slice(18);
-
   return (
-    <Carousel>
-      <div>
-        {first.map((hour) => (
-          <div key={hour.dt}>
-            <div>Hour: {hour.dt}</div>
-            <div>Temp: {hour.temp}</div>
-            <div>Feels Like: {hour.feels_like}</div>
-            <div>Main Description: {hour.weather[0].main}</div>
-            <div>Wind Speed: {hour.wind_speed} M/S</div>
-          </div>
-        ))}
-      </div>
-      <div>
-        {second.map((hour) => (
-          <div key={hour.dt}>
-            <div>Hour: {hour.dt}</div>
-            <div>Temp: {hour.temp}</div>
-            <div>Feels Like: {hour.feels_like}</div>
-            <div>Main Description: {hour.weather[0].main}</div>
-            <div>Wind Speed: {hour.wind_speed} M/S</div>
-          </div>
-        ))}
-      </div>
-      <div>
-        {third.map((hour) => (
-          <div key={hour.dt}>
-            <div>Hour: {hour.dt}</div>
-            <div>Temp: {hour.temp}</div>
-            <div>Feels Like: {hour.feels_like}</div>
-            <div>Main Description: {hour.weather[0].main}</div>
-            <div>Wind Speed: {hour.wind_speed} M/S</div>
-          </div>
-        ))}
-      </div>
-      <div>
-        {fourth.map((hour) => (
-          <div key={hour.dt}>
-            <div>Hour: {hour.dt}</div>
-            <div>Temp: {hour.temp}</div>
-            <div>Feels Like: {hour.feels_like}</div>
-            <div>Main Description: {hour.weather[0].main}</div>
-            <div>Wind Speed: {hour.wind_speed} M/S</div>
-          </div>
-        ))}
-      </div>
-    </Carousel>
+    <div className='hourly-container'>
+      {hourly.map((hour) => (
+        <Card key={hour.dt} className='hourly-card'>
+          <Card.Meta title={hour.dt} />
+          <Space className='hourly-card-description'>
+            <img
+              src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
+              alt='Icon'
+            />
+            <Space direction='vertical'>
+              <Space>{hour.weather[0].description}</Space>
+              <Space>{hour.temp}°C</Space>
+            </Space>
+          </Space>
+          <Space direction='vertical'>
+            <Space>Feels Like: {hour.feels_like}</Space>
+            <Space>
+              <FontAwesomeIcon icon={solid('cloud')} />
+              {`${hour.clouds}%`}
+            </Space>
+            <Space>
+              <FontAwesomeIcon icon={solid('cloud-rain')} />
+              {`${hour.pop}%`}
+            </Space>
+            <Space>
+              <FontAwesomeIcon icon={solid('wind')} />{' '}
+              {`${hour.wind_speed} m/s`}
+            </Space>
+            <Space>
+              <FontAwesomeIcon icon={solid('stopwatch')} />{' '}
+              {`${hour.pressure} hPa`}
+            </Space>
+            <Space>UV {hour.uvi}</Space>
+          </Space>
+        </Card>
+      ))}
+    </div>
   );
 };
 
