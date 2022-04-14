@@ -1,4 +1,4 @@
-import { createSlice, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -24,13 +24,16 @@ const sevenDaysSlice = createSlice({
       state.hasFetched = false;
       state.error = null;
     },
-    fetchSevenDaysForecastSuccess(state, action) {
+    fetchSevenDaysForecastSuccess(
+      state,
+      action: PayloadAction<SevenDaysForecast[]>
+    ) {
       state.loading = false;
       state.hasFetched = true;
       state.error = null;
       state.sevenDaysForecast = action.payload;
     },
-    fetchSevenDaysForecastFailure(state, action) {
+    fetchSevenDaysForecastFailure(state, action: PayloadAction<string>) {
       state.loading = false;
       state.error = action.payload;
     },
@@ -66,7 +69,7 @@ export const fetchSevenDaysForecast =
         },
       });
 
-      const sevenDaysInfo = data.daily
+      const sevenDaysInfo: SevenDaysForecast[] = data.daily
         .slice(0, 7)
         .map((day: SevenDaysForecast) => ({
           ...day,
@@ -75,6 +78,6 @@ export const fetchSevenDaysForecast =
 
       dispatch(fetchSevenDaysForecastSuccess(sevenDaysInfo));
     } catch (error) {
-      dispatch(fetchSevenDaysForecastFailure(error));
+      dispatch(fetchSevenDaysForecastFailure((error as Error).message));
     }
   };

@@ -1,4 +1,4 @@
-import { createSlice, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -24,13 +24,16 @@ const weekendSlice = createSlice({
       state.hasFetched = false;
       state.error = null;
     },
-    fetchWeekendForecastSuccess(state, action) {
+    fetchWeekendForecastSuccess(
+      state,
+      action: PayloadAction<WeekendForecast[]>
+    ) {
       state.loading = false;
       state.hasFetched = true;
       state.error = null;
       state.weekendForecast = action.payload;
     },
-    fetchWeekendForecastFailure(state, action) {
+    fetchWeekendForecastFailure(state, action: PayloadAction<string>) {
       state.loading = false;
       state.error = action.payload;
     },
@@ -66,20 +69,20 @@ export const fetchWeekendForecast =
         },
       });
 
-      const weekendInfo = data.daily
+      const weekendInfo: WeekendForecast[] = data.daily
         .map((day: WeekendForecast) => ({
           ...day,
           dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
         }))
         .filter(
           (day: WeekendForecast) =>
-            day.dt.startsWith('Fri') ||
-            day.dt.startsWith('Sat') ||
-            day.dt.startsWith('Sun')
+            day.dt.toString().startsWith('Fri') ||
+            day.dt.toString().startsWith('Sat') ||
+            day.dt.toString().startsWith('Sun')
         );
 
       dispatch(fetchWeekendForecastSuccess(weekendInfo));
     } catch (error) {
-      dispatch(fetchWeekendForecastFailure(error));
+      dispatch(fetchWeekendForecastFailure((error as Error).message));
     }
   };

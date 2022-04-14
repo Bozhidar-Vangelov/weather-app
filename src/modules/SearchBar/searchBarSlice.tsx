@@ -31,7 +31,6 @@ export const searchBarOptions =
 
     const citiesOptions = allCities.citiesOptions;
 
-    //TODO: Set type
     const userOptions: SelectOptionUI[] = citiesOptions
       .filter((option) =>
         option.city.toLowerCase().startsWith(searchText.toLowerCase())

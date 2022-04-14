@@ -1,4 +1,4 @@
-import { createSlice, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -24,13 +24,16 @@ const fiveDaysSlice = createSlice({
       state.hasFetched = false;
       state.error = null;
     },
-    fetchFiveDaysForecastSuccess(state, action) {
+    fetchFiveDaysForecastSuccess(
+      state,
+      action: PayloadAction<FiveDaysForecast[]>
+    ) {
       state.loading = false;
       state.hasFetched = true;
       state.error = null;
       state.fiveDaysForecast = action.payload;
     },
-    fetchFiveDaysForecastFailure(state, action) {
+    fetchFiveDaysForecastFailure(state, action: PayloadAction<string>) {
       state.loading = false;
       state.error = action.payload;
     },
@@ -66,7 +69,7 @@ export const fetchFiveDaysForecast =
         },
       });
 
-      const fiveDaysInfo = data.daily
+      const fiveDaysInfo: FiveDaysForecast[] = data.daily
         .slice(0, 5)
         .map((day: FiveDaysForecast) => ({
           ...day,
@@ -75,6 +78,6 @@ export const fetchFiveDaysForecast =
 
       dispatch(fetchFiveDaysForecastSuccess(fiveDaysInfo));
     } catch (error) {
-      dispatch(fetchFiveDaysForecastFailure(error));
+      dispatch(fetchFiveDaysForecastFailure((error as Error).message));
     }
   };

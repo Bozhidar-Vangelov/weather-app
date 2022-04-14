@@ -6,7 +6,7 @@ export interface WeekendForecastState {
 }
 
 export interface WeekendForecast {
-  dt: string;
+  dt: number;
   sunrise: number;
   sunset: number;
   moonrise: number;

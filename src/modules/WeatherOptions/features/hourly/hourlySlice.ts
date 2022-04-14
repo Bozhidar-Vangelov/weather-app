@@ -1,4 +1,4 @@
-import { createSlice, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -24,13 +24,13 @@ const hourlySlice = createSlice({
       state.hasFetched = false;
       state.error = null;
     },
-    fetchHourlyForecastSuccess(state, action) {
+    fetchHourlyForecastSuccess(state, action: PayloadAction<Hourly[]>) {
       state.loading = false;
       state.hasFetched = true;
       state.error = null;
       state.hourly = action.payload;
     },
-    fetchHourlyForecastFailure(state, action) {
+    fetchHourlyForecastFailure(state, action: PayloadAction<string>) {
       state.loading = false;
       state.error = action.payload;
     },
@@ -66,7 +66,7 @@ export const fetchHourlyForecast =
         },
       });
 
-      const twentyFourHoursInfo = data.hourly
+      const twentyFourHoursInfo: Hourly[] = data.hourly
         .slice(0, 24)
         .map((day: Hourly) => ({
           ...day,
@@ -75,6 +75,6 @@ export const fetchHourlyForecast =
 
       dispatch(fetchHourlyForecastSuccess(twentyFourHoursInfo));
     } catch (error) {
-      dispatch(fetchHourlyForecastFailure(error));
+      dispatch(fetchHourlyForecastFailure((error as Error).message));
     }
   };
