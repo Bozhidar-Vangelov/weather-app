@@ -1,0 +1,25 @@
+.tabs {
+  .ant-tabs-nav-wrap {
+    display: flex;
+    justify-content: center;
+    color: rgb(99, 99, 99);
+  }
+
+  .ant-tabs-tab-btn {
+    color: black;
+  }
+
+  .ant-tabs-tab-btn:hover {
+    color: gray;
+  }
+
+  .ant-tabs-tab-active {
+    > * {
+      color: red !important;
+    }
+  }
+
+  .ant-tabs-ink-bar {
+    background-color: black;
+  }
+}
