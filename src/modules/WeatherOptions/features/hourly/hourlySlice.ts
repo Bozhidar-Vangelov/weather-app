@@ -71,6 +71,10 @@ export const fetchHourlyForecast =
         .map((day: Hourly) => ({
           ...day,
           dt: moment.unix(Number(day.dt)).format('HH:mm'),
+          feels_like: Math.round(day.feels_like),
+          temp: Math.round(day.temp),
+          wind_speed: Math.round(day.wind_speed),
+          uvi: Math.round(day.uvi),
         }));
 
       dispatch(fetchHourlyForecastSuccess(twentyFourHoursInfo));

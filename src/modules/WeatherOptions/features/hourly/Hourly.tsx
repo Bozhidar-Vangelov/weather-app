@@ -55,11 +55,14 @@ const Hourly = () => {
               {`${hour.pop}%`}
             </Space>
             <Space>
-              <FontAwesomeIcon icon={solid('wind')} />{' '}
+              <FontAwesomeIcon icon={solid('wind')} />
               {`${hour.wind_speed} m/s`}
             </Space>
             <Space>
-              <FontAwesomeIcon icon={solid('stopwatch')} />{' '}
+              <FontAwesomeIcon icon={solid('droplet')} /> {hour.humidity}
+            </Space>
+            <Space>
+              <FontAwesomeIcon icon={solid('stopwatch')} />
               {`${hour.pressure} hPa`}
             </Space>
             <Space>UV {hour.uvi}</Space>

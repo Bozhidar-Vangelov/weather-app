@@ -74,6 +74,14 @@ export const fetchSevenDaysForecast =
         .map((day: SevenDaysForecast) => ({
           ...day,
           dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
+          pop: Number(day.pop.toString().slice(2)),
+          sunrise: moment.unix(day.sunrise).format('HH:mm'),
+          sunset: moment.unix(day.sunset).format('HH:mm'),
+          temp: {
+            ...day.temp,
+            max: Math.round(day.temp.max),
+            min: Math.round(day.temp.min),
+          },
         }));
 
       dispatch(fetchSevenDaysForecastSuccess(sevenDaysInfo));

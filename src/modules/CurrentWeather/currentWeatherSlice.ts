@@ -74,8 +74,8 @@ export const fetchCurrentWeather =
 
         main: {
           ...data.main,
-          feels_like: Number(data.main.feels_like.toFixed(1)),
-          temp: Number(data.main.temp.toFixed(1)),
+          feels_like: Math.round(data.main.feels_like),
+          temp: Math.round(data.main.temp),
         },
       };
 

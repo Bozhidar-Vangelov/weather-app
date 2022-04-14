@@ -73,6 +73,15 @@ export const fetchWeekendForecast =
         .map((day: WeekendForecast) => ({
           ...day,
           dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
+          pop: Number(day.pop.toString().slice(2)),
+          wind_speed: Math.round(day.wind_speed),
+          temp: {
+            ...day.temp,
+            max: Math.round(day.temp.max),
+            min: Math.round(day.temp.min),
+            day: Math.round(day.temp.day),
+            night: Math.round(day.temp.night),
+          },
         }))
         .filter(
           (day: WeekendForecast) =>
@@ -80,6 +89,8 @@ export const fetchWeekendForecast =
             day.dt.toString().startsWith('Sat') ||
             day.dt.toString().startsWith('Sun')
         );
+
+      console.log(weekendInfo);
 
       dispatch(fetchWeekendForecastSuccess(weekendInfo));
     } catch (error) {

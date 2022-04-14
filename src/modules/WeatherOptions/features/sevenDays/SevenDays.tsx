@@ -35,8 +35,18 @@ const SevenDays = () => {
           <div>Day: {day.dt}</div>
           <div>Min Temp: {day.temp.min}</div>
           <div>Max Temp: {day.temp.max}</div>
+          <div>Clouds: {day.clouds}</div>
+          <div>Pop: {day.pop}</div>
           <div>Main Description: {day.weather[0].main}</div>
-          <div>Wind Speed: {day.wind_speed} M/S</div>
+          <div>Sunrise: {day.sunrise} M/S</div>
+          <div>Sunset: {day.sunset} M/S</div>
+          <div>
+            Icon:
+            <img
+              src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+              alt='Icon'
+            />
+          </div>
         </div>
       ))}
     </Space>

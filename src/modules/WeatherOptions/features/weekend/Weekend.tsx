@@ -34,7 +34,16 @@ const Weekend = () => {
           <div>Min Temp: {day.temp.min}</div>
           <div>Max Temp: {day.temp.max}</div>
           <div>Main Description: {day.weather[0].main}</div>
-          <div>Wind Speed: {day.wind_speed} M/S</div>
+          <div>Wind Speed: {day.wind_speed} m/s</div>
+          <div>Pop: {day.pop} %</div>
+          <div>Clouds: {day.clouds} %</div>
+          <div>
+            Icon:
+            <img
+              src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
+              alt='Icon'
+            />
+          </div>
         </div>
       ))}
     </Space>
