@@ -4,6 +4,19 @@
   overflow-x: scroll;
 }
 
+.hourly-container::-webkit-scrollbar {
+  height: 1.8em;
+}
+
+.hourly-container::-webkit-scrollbar-thumb {
+  background: #16d9e3;
+  border-radius: 1em;
+}
+
+.hourly-container::-webkit-scrollbar-thumb:hover {
+  background: #13a4ac;
+}
+
 .hourly-card {
   margin: 1em;
   border: none;
@@ -21,23 +34,39 @@
   .ant-card-meta-title {
     font-size: 1.5em;
     font-weight: bold;
-    color: rgb(82, 82, 82);
-    border-bottom: 2px solid black;
+    color: #525252;
+    border-bottom: 2px solid #525252;
     padding-bottom: 0.5em;
   }
 
-  .hourly-card-description {
-    font-size: 1.5em;
-    text-transform: capitalize;
-    margin: 1em 0 1em 0;
+  > * {
+    color: #525252;
   }
 
   .ant-card-body {
     width: 20em;
     text-align: center;
-  }
 
-  > * {
-    color: rgb(82, 82, 82);
+    .hourly-card-description {
+      font-size: 1.3em;
+      text-transform: capitalize;
+      margin: 1em 0 0 0;
+      text-align: baseline;
+    }
+
+    .hourly-card-feels-like {
+      margin-bottom: 1.5em;
+      font-size: 1.2em;
+      text-align: center;
+    }
+
+    .hourly-card-details-container {
+      display: flex;
+      justify-content: space-around;
+
+      .hourly-card-details {
+        align-items: baseline;
+      }
+    }
   }
 }

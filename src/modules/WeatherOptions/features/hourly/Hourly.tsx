@@ -40,32 +40,41 @@ const Hourly = () => {
               alt='Icon'
             />
             <Space direction='vertical'>
-              <Space>{hour.weather[0].description}</Space>
-              <Space>{hour.temp}°C</Space>
+              {`${hour.weather[0].description} ${hour.temp}°C`}
             </Space>
           </Space>
-          <Space direction='vertical'>
-            <Space>Feels Like: {hour.feels_like}</Space>
-            <Space>
-              <FontAwesomeIcon icon={solid('cloud')} />
-              {`${hour.clouds}%`}
+          <Space className='hourly-card-feels-like'>
+            Feels Like {`${hour.feels_like}°C`}
+          </Space>
+          <Space
+            direction='horizontal'
+            className='hourly-card-details-container'
+          >
+            <Space direction='vertical' className='hourly-card-details'>
+              <Space>
+                <FontAwesomeIcon icon={solid('cloud')} />
+                {`${hour.clouds}%`}
+              </Space>
+              <Space>
+                <FontAwesomeIcon icon={solid('cloud-rain')} />
+                {`${hour.pop}%`}
+              </Space>
+              <Space>
+                <FontAwesomeIcon icon={solid('wind')} />
+                {`${hour.wind_speed} m/s`}
+              </Space>
             </Space>
-            <Space>
-              <FontAwesomeIcon icon={solid('cloud-rain')} />
-              {`${hour.pop}%`}
+            <Space direction='vertical' className='hourly-card-details'>
+              <Space>
+                <FontAwesomeIcon icon={solid('droplet')} />
+                {`${hour.humidity}%`}
+              </Space>
+              <Space>
+                <FontAwesomeIcon icon={solid('stopwatch')} />
+                {`${hour.pressure} hPa`}
+              </Space>
+              <Space>UV index {hour.uvi}</Space>
             </Space>
-            <Space>
-              <FontAwesomeIcon icon={solid('wind')} />
-              {`${hour.wind_speed} m/s`}
-            </Space>
-            <Space>
-              <FontAwesomeIcon icon={solid('droplet')} /> {hour.humidity}
-            </Space>
-            <Space>
-              <FontAwesomeIcon icon={solid('stopwatch')} />
-              {`${hour.pressure} hPa`}
-            </Space>
-            <Space>UV {hour.uvi}</Space>
           </Space>
         </Card>
       ))}
