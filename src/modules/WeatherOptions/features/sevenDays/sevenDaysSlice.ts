@@ -31,7 +31,20 @@ const sevenDaysSlice = createSlice({
       state.loading = false;
       state.hasFetched = true;
       state.error = null;
-      state.sevenDaysForecast = action.payload;
+      state.sevenDaysForecast = action.payload
+        .slice(0, 7)
+        .map((day: SevenDaysForecast) => ({
+          ...day,
+          dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
+          pop: Number(day.pop.toString().slice(2)),
+          sunrise: moment.unix(Number(day.sunrise)).format('HH:mm'),
+          sunset: moment.unix(Number(day.sunset)).format('HH:mm'),
+          temp: {
+            ...day.temp,
+            max: Math.round(day.temp.max),
+            min: Math.round(day.temp.min),
+          },
+        }));
     },
     fetchSevenDaysForecastFailure(state, action: PayloadAction<string>) {
       state.loading = false;
@@ -69,22 +82,7 @@ export const fetchSevenDaysForecast =
         },
       });
 
-      const sevenDaysInfo: SevenDaysForecast[] = data.daily
-        .slice(0, 7)
-        .map((day: SevenDaysForecast) => ({
-          ...day,
-          dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
-          pop: Number(day.pop.toString().slice(2)),
-          sunrise: moment.unix(day.sunrise).format('HH:mm'),
-          sunset: moment.unix(day.sunset).format('HH:mm'),
-          temp: {
-            ...day.temp,
-            max: Math.round(day.temp.max),
-            min: Math.round(day.temp.min),
-          },
-        }));
-
-      dispatch(fetchSevenDaysForecastSuccess(sevenDaysInfo));
+      dispatch(fetchSevenDaysForecastSuccess(data.daily));
     } catch (error) {
       dispatch(fetchSevenDaysForecastFailure((error as Error).message));
     }

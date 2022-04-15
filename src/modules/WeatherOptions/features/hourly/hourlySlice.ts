@@ -28,7 +28,14 @@ const hourlySlice = createSlice({
       state.loading = false;
       state.hasFetched = true;
       state.error = null;
-      state.hourly = action.payload;
+      state.hourly = action.payload.slice(0, 24).map((day: Hourly) => ({
+        ...day,
+        dt: moment.unix(Number(day.dt)).format('HH:mm'),
+        feels_like: Math.round(day.feels_like),
+        temp: Math.round(day.temp),
+        wind_speed: Math.round(day.wind_speed),
+        uvi: Math.round(day.uvi),
+      }));
     },
     fetchHourlyForecastFailure(state, action: PayloadAction<string>) {
       state.loading = false;
@@ -66,16 +73,7 @@ export const fetchHourlyForecast =
         },
       });
 
-      const twentyFourHoursInfo: Hourly[] = data.hourly
-        .slice(0, 24)
-        .map((day: Hourly) => ({
-          ...day,
-          dt: moment.unix(Number(day.dt)).format('HH:mm'),
-          feels_like: Math.round(day.feels_like),
-          temp: Math.round(day.temp),
-          wind_speed: Math.round(day.wind_speed),
-          uvi: Math.round(day.uvi),
-        }));
+      const twentyFourHoursInfo: Hourly[] = data.hourly;
 
       dispatch(fetchHourlyForecastSuccess(twentyFourHoursInfo));
     } catch (error) {

@@ -31,7 +31,12 @@ const fiveDaysSlice = createSlice({
       state.loading = false;
       state.hasFetched = true;
       state.error = null;
-      state.fiveDaysForecast = action.payload;
+      state.fiveDaysForecast = action.payload
+        .slice(0, 5)
+        .map((day: FiveDaysForecast) => ({
+          ...day,
+          dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
+        }));
     },
     fetchFiveDaysForecastFailure(state, action: PayloadAction<string>) {
       state.loading = false;
@@ -69,14 +74,7 @@ export const fetchFiveDaysForecast =
         },
       });
 
-      const fiveDaysInfo: FiveDaysForecast[] = data.daily
-        .slice(0, 5)
-        .map((day: FiveDaysForecast) => ({
-          ...day,
-          dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
-        }));
-
-      dispatch(fetchFiveDaysForecastSuccess(fiveDaysInfo));
+      dispatch(fetchFiveDaysForecastSuccess(data.daily));
     } catch (error) {
       dispatch(fetchFiveDaysForecastFailure((error as Error).message));
     }

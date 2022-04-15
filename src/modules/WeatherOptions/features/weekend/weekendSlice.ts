@@ -31,7 +31,27 @@ const weekendSlice = createSlice({
       state.loading = false;
       state.hasFetched = true;
       state.error = null;
-      state.weekendForecast = action.payload;
+      state.weekendForecast = action.payload
+        .map((day: WeekendForecast) => ({
+          ...day,
+          dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
+          pop: Number(day.pop.toString().slice(2)),
+          wind_speed: Math.round(day.wind_speed),
+          temp: {
+            ...day.temp,
+            max: Math.round(day.temp.max),
+            min: Math.round(day.temp.min),
+            day: Math.round(day.temp.day),
+            night: Math.round(day.temp.night),
+          },
+        }))
+        .filter((day: WeekendForecast) => {
+          return (
+            day.dt.startsWith('Fri') ||
+            day.dt.startsWith('Sat') ||
+            day.dt.startsWith('Sun')
+          );
+        });
     },
     fetchWeekendForecastFailure(state, action: PayloadAction<string>) {
       state.loading = false;
@@ -69,30 +89,7 @@ export const fetchWeekendForecast =
         },
       });
 
-      const weekendInfo: WeekendForecast[] = data.daily
-        .map((day: WeekendForecast) => ({
-          ...day,
-          dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
-          pop: Number(day.pop.toString().slice(2)),
-          wind_speed: Math.round(day.wind_speed),
-          temp: {
-            ...day.temp,
-            max: Math.round(day.temp.max),
-            min: Math.round(day.temp.min),
-            day: Math.round(day.temp.day),
-            night: Math.round(day.temp.night),
-          },
-        }))
-        .filter(
-          (day: WeekendForecast) =>
-            day.dt.toString().startsWith('Fri') ||
-            day.dt.toString().startsWith('Sat') ||
-            day.dt.toString().startsWith('Sun')
-        );
-
-      console.log(weekendInfo);
-
-      dispatch(fetchWeekendForecastSuccess(weekendInfo));
+      dispatch(fetchWeekendForecastSuccess(data.daily));
     } catch (error) {
       dispatch(fetchWeekendForecastFailure((error as Error).message));
     }
