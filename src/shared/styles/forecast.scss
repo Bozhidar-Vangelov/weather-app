@@ -1,23 +1,23 @@
-.hourly-container {
+.forecast-container {
   margin: 0 2em;
   display: flex;
   overflow-x: scroll;
 }
 
-.hourly-container::-webkit-scrollbar {
+.forecast-container::-webkit-scrollbar {
   height: 1.8em;
 }
 
-.hourly-container::-webkit-scrollbar-thumb {
+.forecast-container::-webkit-scrollbar-thumb {
   background: #16d9e3;
   border-radius: 1em;
 }
 
-.hourly-container::-webkit-scrollbar-thumb:hover {
+.forecast-container::-webkit-scrollbar-thumb:hover {
   background: #13a4ac;
 }
 
-.hourly-card {
+.forecast-card {
   margin: 1em;
   border: none;
 
@@ -47,24 +47,24 @@
     width: 20em;
     text-align: center;
 
-    .hourly-card-description {
+    .forecast-card-description {
       font-size: 1.3em;
       text-transform: capitalize;
-      margin: 1em 0 0 0;
       text-align: baseline;
+      margin-bottom: 1em;
     }
 
-    .hourly-card-feels-like {
+    .forecast-card-feels-like {
       margin-bottom: 1.5em;
       font-size: 1.2em;
       text-align: center;
     }
 
-    .hourly-card-details-container {
+    .forecast-card-details-container {
       display: flex;
       justify-content: space-around;
 
-      .hourly-card-details {
+      .forecast-card-details {
         align-items: baseline;
       }
     }

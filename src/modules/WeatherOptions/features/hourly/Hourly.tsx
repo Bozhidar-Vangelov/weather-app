@@ -30,11 +30,11 @@ const Hourly = () => {
   }
 
   return (
-    <div className='hourly-container'>
+    <Space className='forecast-container'>
       {hourly.map((hour) => (
-        <Card key={hour.dt} className='hourly-card'>
+        <Card key={hour.dt} className='forecast-card'>
           <Card.Meta title={hour.dt} />
-          <Space className='hourly-card-description'>
+          <Space className='forecast-card-description'>
             <img
               src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
               alt='Icon'
@@ -43,14 +43,11 @@ const Hourly = () => {
               {`${hour.weather[0].description} ${hour.temp}°C`}
             </Space>
           </Space>
-          <Space className='hourly-card-feels-like'>
+          <Space className='forecast-card-feels-like'>
             Feels Like {`${hour.feels_like}°C`}
           </Space>
-          <Space
-            direction='horizontal'
-            className='hourly-card-details-container'
-          >
-            <Space direction='vertical' className='hourly-card-details'>
+          <Space className='forecast-card-details-container'>
+            <Space direction='vertical' className='forecast-card-details'>
               <Space>
                 <FontAwesomeIcon icon={solid('cloud')} />
                 {`${hour.clouds}%`}
@@ -64,7 +61,7 @@ const Hourly = () => {
                 {`${hour.wind_speed} m/s`}
               </Space>
             </Space>
-            <Space direction='vertical' className='hourly-card-details'>
+            <Space direction='vertical' className='forecast-card-details'>
               <Space>
                 <FontAwesomeIcon icon={solid('droplet')} />
                 {`${hour.humidity}%`}
@@ -78,7 +75,7 @@ const Hourly = () => {
           </Space>
         </Card>
       ))}
-    </div>
+    </Space>
   );
 };
 
