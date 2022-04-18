@@ -1,25 +1,121 @@
-.tabs {
-  .ant-tabs-nav-wrap {
-    display: flex;
-    justify-content: center;
-    color: rgb(99, 99, 99);
-  }
+.ant-tabs-nav-wrap {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1em;
+}
 
-  .ant-tabs-tab-btn {
-    color: black;
-  }
+.ant-tabs-tab {
+  font-weight: bold;
+  font-size: 1.3em;
+}
 
-  .ant-tabs-tab-btn:hover {
-    color: gray;
-  }
+.ant-tabs-tab-btn {
+  color: #525252;
+}
 
-  .ant-tabs-tab-active {
-    > * {
-      color: red !important;
-    }
-  }
+.ant-tabs-tab-btn:hover {
+  color: #1ed4e6;
+}
 
-  .ant-tabs-ink-bar {
-    background-color: black;
+.ant-tabs-tab-active {
+  > * {
+    color: #1ed4e6 !important;
   }
 }
+
+.ant-tabs-ink-bar {
+  background-color: #1ed4e6;
+}
+
+.ant-tabs-top {
+  .ant-tabs-nav {
+    &::before {
+      // display: none;
+      color: red;
+      background: red;
+    }
+  }
+}
+
+// .ant-tabs-tab {
+//   position: relative;
+//   background: transparent;
+//   border: 0;
+//   outline: none;
+//   color: white;
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   border-top-left-radius: 0.25rem;
+//   border-top-right-radius: 0.25rem;
+//   letter-spacing: 0.5px;
+//   padding: 0.5rem 1rem !important;
+//   white-space: nowrap;
+//   font-family: 'Oswald';
+//   font-size: 1rem;
+//   fill: currentColor;
+//   user-select: none;
+//   cursor: pointer;
+
+//   &:hover {
+//     color: #00b2ca !important;
+//   }
+// }
+
+// .ant-tabs-tab-active {
+//   background-color: rgba(#00b2ca, 0.2);
+
+//   .ant-tabs-tab-btn {
+//     color: white !important;
+//   }
+// }
+
+// .ant-tabs-ink-bar {
+//   position: absolute;
+//   background: none;
+//   pointer-events: none;
+// }
+
+// .ant-tabs-left {
+//   .ant-tabs-content-holder {
+//     border-left: 1px solid #00b2ca !important;
+//     margin-left: 1px !important;
+//   }
+// }
+
+// .ant-tabs-top {
+//   .ant-tabs-nav {
+//     margin: 0;
+//     &::before {
+//       display: none;
+//     }
+//   }
+//   .ant-tabs-content-holder {
+//     border-top: 1px solid #00b2ca !important;
+//     margin-top: 1px !important;
+//   }
+// }
+
+// .ant-tabs-right {
+//   .ant-tabs-content-holder {
+//     border-right: 1px solid #00b2ca !important;
+//     margin-right: 1px !important;
+//   }
+// }
+
+// .ant-tabs-bottom {
+//   .ant-tabs-nav {
+//     margin: 0;
+//     &::before {
+//       display: none;
+//     }
+//   }
+//   .ant-tabs-content-holder {
+//     border-bottom: 1px solid #00b2ca !important;
+//     margin-bottom: 1px !important;
+//   }
+// }
+
+// .ant-tabs {
+//   color: #f7f8fa;
+// }
