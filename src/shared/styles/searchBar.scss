@@ -5,12 +5,49 @@
 
   .search-bar {
     width: 25em;
-    border: 3px solid;
-    border-image: linear-gradient(45deg, rgb(95, 95, 95), rgb(0, 151, 20)) 1;
+
+    .ant-select-selector {
+      background-image: radial-gradient(
+        circle 248px at center,
+        #16d9e3 0%,
+        #30c7ec 47%,
+        #46aef7 100%
+      );
+
+      .ant-select-selection-search-input {
+        color: #525252;
+        font-weight: bold;
+      }
+    }
+
+    .ant-select-clear {
+      background: transparent;
+      color: #525252;
+
+      &:hover {
+        color: #2e2e2e;
+      }
+    }
+
+    .ant-select-selection-placeholder {
+      color: #ffffff80;
+    }
   }
 }
 
 .search-bar-options-container {
   display: flex;
   justify-content: space-between;
+  padding: 10px;
+  color: #525252;
+  font-weight: bold;
+}
+
+.ant-select-dropdown {
+  background-image: radial-gradient(
+    circle 248px at center,
+    #16d9e3 0%,
+    #30c7ec 47%,
+    #46aef7 100%
+  );
 }
