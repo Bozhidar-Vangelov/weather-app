@@ -10,6 +10,7 @@ import {
   fiveDaysForecastSelector,
   resetFiveDaysForecastState,
 } from './fiveDaysSlice';
+import FiveDaysDetails from './FiveDaysDetails';
 
 const FiveDays = () => {
   const dispatch = useDispatch();
@@ -84,6 +85,9 @@ const FiveDays = () => {
                 {`${day.pressure} hPa`}
               </Space>
             </Space>
+          </Space>
+          <Space>
+            <FiveDaysDetails day={day} />
           </Space>
         </Card>
       ))}
