@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Space, Spin } from 'antd';
+import { Space, Spin } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid, regular } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -10,6 +10,7 @@ import {
   resetSevenDaysForecastState,
   sevenDaysForecastSelector,
 } from './sevenDaysSlice';
+import ForecastCard from '../../../../shared/components/ForecastCard';
 
 const SevenDays = () => {
   const dispatch = useDispatch();
@@ -29,13 +30,9 @@ const SevenDays = () => {
     <Spin spinning={loading}>
       <Space className='forecast-container'>
         {sevenDaysForecast.map((day) => (
-          <Card key={day.dt} className='forecast-card'>
-            <Card.Meta title={day.dt} />
-            <Space className='forecast-card-description'>
-              <img
-                src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-                alt='Icon'
-              />
+          <ForecastCard
+            info={day}
+            description={
               <Space direction='vertical'>
                 <Space>{day.weather[0].main}</Space>
                 <Space>
@@ -49,9 +46,9 @@ const SevenDays = () => {
                   </Space>
                 </Space>
               </Space>
-            </Space>
-            <Space className='forecast-card-details-container'>
-              <Space direction='vertical' className='forecast-card-details'>
+            }
+            detailsFirstColumn={
+              <>
                 <Space>
                   <FontAwesomeIcon icon={solid('cloud')} />
                   {`${day.clouds}%`}
@@ -60,8 +57,10 @@ const SevenDays = () => {
                   <FontAwesomeIcon icon={solid('cloud-rain')} />
                   {`${day.pop}%`}
                 </Space>
-              </Space>
-              <Space direction='vertical' className='forecast-card-details'>
+              </>
+            }
+            detailsSecondColumn={
+              <>
                 <Space>
                   <FontAwesomeIcon icon={regular('sun')} />
                   {day.sunrise}
@@ -70,9 +69,9 @@ const SevenDays = () => {
                   <FontAwesomeIcon icon={solid('sun')} />
                   {day.sunset}
                 </Space>
-              </Space>
-            </Space>
-          </Card>
+              </>
+            }
+          />
         ))}
       </Space>
     </Spin>

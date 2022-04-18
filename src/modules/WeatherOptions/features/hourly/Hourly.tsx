@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Card, Space, Spin } from 'antd';
+import { Space, Spin } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 
@@ -10,6 +10,7 @@ import {
   hourlyForecastSelector,
   resetHourlyForecastState,
 } from './hourlySlice';
+import ForecastCard from '../../../../shared/components/ForecastCard';
 
 const Hourly = () => {
   const dispatch = useDispatch();
@@ -29,22 +30,15 @@ const Hourly = () => {
     <Spin spinning={loading}>
       <Space className='forecast-container'>
         {hourly.map((hour) => (
-          <Card key={hour.dt} className='forecast-card'>
-            <Card.Meta title={hour.dt} />
-            <Space className='forecast-card-description'>
-              <img
-                src={`http://openweathermap.org/img/wn/${hour.weather[0].icon}@2x.png`}
-                alt='Icon'
-              />
+          <ForecastCard
+            info={hour}
+            description={
               <Space direction='vertical'>
                 {`${hour.weather[0].description} ${hour.temp}°C`}
               </Space>
-            </Space>
-            <Space className='forecast-card-feels-like'>
-              Feels Like {`${hour.feels_like}°C`}
-            </Space>
-            <Space className='forecast-card-details-container'>
-              <Space direction='vertical' className='forecast-card-details'>
+            }
+            detailsFirstColumn={
+              <>
                 <Space>
                   <FontAwesomeIcon icon={solid('cloud')} />
                   {`${hour.clouds}%`}
@@ -57,8 +51,10 @@ const Hourly = () => {
                   <FontAwesomeIcon icon={solid('wind')} />
                   {`${hour.wind_speed} m/s`}
                 </Space>
-              </Space>
-              <Space direction='vertical' className='forecast-card-details'>
+              </>
+            }
+            detailsSecondColumn={
+              <>
                 <Space>
                   <FontAwesomeIcon icon={solid('droplet')} />
                   {`${hour.humidity}%`}
@@ -68,9 +64,9 @@ const Hourly = () => {
                   {`${hour.pressure} hPa`}
                 </Space>
                 <Space>UV index {hour.uvi}</Space>
-              </Space>
-            </Space>
-          </Card>
+              </>
+            }
+          />
         ))}
       </Space>
     </Spin>

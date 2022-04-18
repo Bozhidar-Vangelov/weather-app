@@ -11,6 +11,7 @@ import {
   resetFiveDaysForecastState,
 } from './fiveDaysSlice';
 import FiveDaysDetails from './FiveDaysDetails';
+import ForecastCard from '../../../../shared/components/ForecastCard';
 
 const FiveDays = () => {
   const dispatch = useDispatch();
@@ -30,13 +31,9 @@ const FiveDays = () => {
     <Spin spinning={loading}>
       <Space className='forecast-container'>
         {fiveDaysForecast.map((day) => (
-          <Card key={day.dt} className='forecast-card'>
-            <Card.Meta title={day.dt} />
-            <Space className='forecast-card-description'>
-              <img
-                src={`http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`}
-                alt='Icon'
-              />
+          <ForecastCard
+            info={day}
+            description={
               <Space direction='vertical'>
                 <Space>{day.weather[0].main}</Space>
                 <Space direction='vertical'>
@@ -50,8 +47,8 @@ const FiveDays = () => {
                   </Space>
                 </Space>
               </Space>
-            </Space>
-            <Space className='forecast-card-details-container'>
+            }
+            detailsFirstColumn={
               <Space direction='vertical' className='forecast-card-details'>
                 <Space>
                   <FontAwesomeIcon icon={solid('cloud')} />
@@ -66,6 +63,8 @@ const FiveDays = () => {
                   {`${day.wind_speed} m/s`}
                 </Space>
               </Space>
+            }
+            detailsSecondColumn={
               <Space direction='vertical' className='forecast-card-details'>
                 <Space>
                   <FontAwesomeIcon icon={regular('sun')} />
@@ -80,11 +79,9 @@ const FiveDays = () => {
                   {`${day.pressure} hPa`}
                 </Space>
               </Space>
-            </Space>
-            <Space>
-              <FiveDaysDetails day={day} />
-            </Space>
-          </Card>
+            }
+            detailsModal={<FiveDaysDetails day={day} />}
+          />
         ))}
       </Space>
     </Spin>
