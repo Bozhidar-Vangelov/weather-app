@@ -4,9 +4,13 @@ import moment from 'moment';
 
 import { config } from '../../../../shared/utils/config';
 import { RootState } from '../../../../shared/store/configureStore';
-import { FiveDaysForecast, FiveDaysForecastState } from './types';
+import {
+  FiveDaysForecast,
+  FiveDaysForecastState,
+  FiveDaysHourlyForecast,
+} from './types';
 
-const { ONE_CALL_WEATHER_URL, API_ID } = config;
+const { ONE_CALL_WEATHER_URL, FIVE_DAYS_WEATHER_URL, API_ID } = config;
 
 const initialState: FiveDaysForecastState = {
   loading: false,
@@ -44,6 +48,10 @@ const fiveDaysSlice = createSlice({
             max: Math.round(day.temp.max),
             min: Math.round(day.temp.min),
           },
+          hourly: day.hourly.map((hour: FiveDaysHourlyForecast) => ({
+            ...hour,
+            dt: moment.unix(Number(hour.dt)).format('HH:mm'),
+          })),
         }));
     },
     fetchFiveDaysForecastFailure(state, action: PayloadAction<string>) {
@@ -72,19 +80,44 @@ export const fetchFiveDaysForecast =
     dispatch(fetchFiveDaysForecastInit());
 
     try {
-      const { data } = await axios.get(`${ONE_CALL_WEATHER_URL}`, {
-        params: {
-          lat: lat,
-          lon: lon,
-          exclude: 'current,minutely,hourly,alerts',
-          units: 'metric',
-          appid: API_ID,
-        },
-      });
+      const { data: fiveDaysGeneralData } = await axios.get(
+        `${ONE_CALL_WEATHER_URL}`,
+        {
+          params: {
+            lat: lat,
+            lon: lon,
+            exclude: 'current,minutely,hourly,alerts',
+            units: 'metric',
+            appid: API_ID,
+          },
+        }
+      );
 
-      console.log(data.daily);
+      const { data: fiveDaysHourlyData } = await axios.get(
+        FIVE_DAYS_WEATHER_URL,
+        {
+          params: {
+            lat: lat,
+            lon: lon,
+            exclude: 'current,minutely,hourly,alerts',
+            units: 'metric',
+            appid: API_ID,
+          },
+        }
+      );
 
-      dispatch(fetchFiveDaysForecastSuccess(data.daily));
+      const fullData = fiveDaysGeneralData.daily.map(
+        (day: FiveDaysForecast) => ({
+          ...day,
+          hourly: fiveDaysHourlyData.list.filter(
+            (hour: FiveDaysForecast) =>
+              moment.unix(Number(hour.dt)).format('DD') ===
+              moment.unix(Number(day.dt)).format('DD')
+          ),
+        })
+      );
+
+      dispatch(fetchFiveDaysForecastSuccess(fullData));
     } catch (error) {
       dispatch(fetchFiveDaysForecastFailure((error as Error).message));
     }

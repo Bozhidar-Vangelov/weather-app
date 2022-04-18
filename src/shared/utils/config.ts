@@ -3,6 +3,7 @@ const API_BASE_URL = 'https://api.openweathermap.org';
 
 const CURRENT_WEATHER_URL = `${API_BASE_URL}/data/2.5/weather`;
 const ONE_CALL_WEATHER_URL = `${API_BASE_URL}/data/2.5/onecall`;
+const FIVE_DAYS_WEATHER_URL = `${API_BASE_URL}/data/2.5/forecast`;
 
 const ALL_CITIES_URL = 'https://countriesnow.space/api/v0.1/countries';
 
@@ -10,5 +11,6 @@ export const config = {
   API_ID,
   CURRENT_WEATHER_URL,
   ONE_CALL_WEATHER_URL,
+  FIVE_DAYS_WEATHER_URL,
   ALL_CITIES_URL,
 };
