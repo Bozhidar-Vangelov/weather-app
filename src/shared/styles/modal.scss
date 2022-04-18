@@ -12,11 +12,16 @@
   }
 }
 
+//fix button styles
 .show-modal-button {
-  background-color: #3492d4;
+  background-color: #297fb9af;
   border: none;
-  color: #525252;
+  color: #00097c;
   font-weight: bold;
   margin-top: 1em;
   border-radius: 3%;
+
+  & :hover {
+    background-color: #2980b9;
+  }
 }

@@ -7,25 +7,20 @@
     width: 25em;
 
     .ant-select-selector {
-      background-image: radial-gradient(
-        circle 248px at center,
-        #16d9e3 0%,
-        #30c7ec 47%,
-        #46aef7 100%
-      );
+      background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
 
       .ant-select-selection-search-input {
-        color: #525252;
+        color: #00097c;
         font-weight: bold;
       }
     }
 
     .ant-select-clear {
       background: transparent;
-      color: #525252;
+      color: #00097c;
 
       &:hover {
-        color: #2e2e2e;
+        color: #000546;
       }
     }
 
@@ -39,15 +34,10 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  color: #525252;
+  color: #00097c;
   font-weight: bold;
 }
 
 .ant-select-dropdown {
-  background-image: radial-gradient(
-    circle 248px at center,
-    #16d9e3 0%,
-    #30c7ec 47%,
-    #46aef7 100%
-  );
+  background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
 }

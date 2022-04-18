@@ -9,12 +9,12 @@
 }
 
 .forecast-container::-webkit-scrollbar-thumb {
-  background: #16d9e3;
+  background: #297fb9af;
   border-radius: 1em;
 }
 
 .forecast-container::-webkit-scrollbar-thumb:hover {
-  background: #13a4ac;
+  background: #2980b9;
 }
 
 .forecast-card {
@@ -23,24 +23,21 @@
 
   border-radius: 5%;
   font-weight: bold;
-  background-image: radial-gradient(
-    circle 248px at center,
-    #16d9e3 0%,
-    #30c7ec 47%,
-    #46aef7 100%
-  );
-  box-shadow: 3px 3px 5px 0px #00000085;
+
+  background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+  //dark background
+  // background: linear-gradient(to right, #003973, #e5e5be);
 
   .ant-card-meta-title {
     font-size: 1.5em;
     font-weight: bold;
-    color: #525252;
-    border-bottom: 2px solid #525252;
+    color: #00097c;
+    border-bottom: 2px solid #00097c;
     padding-bottom: 0.5em;
   }
 
   > * {
-    color: #525252;
+    color: #00097c;
   }
 
   .ant-card-body {

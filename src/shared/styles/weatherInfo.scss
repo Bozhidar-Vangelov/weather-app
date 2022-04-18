@@ -2,18 +2,13 @@
   display: flex;
   align-items: baseline;
   justify-content: space-around;
-  color: rgb(82, 82, 82);
+  color: #00097c;
   margin: 1em;
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: bold;
-  width: 80%;
+  width: 65%;
   margin: 0 auto;
-  background-image: radial-gradient(
-    circle 248px at center,
-    #16d9e3 0%,
-    #30c7ec 47%,
-    #46aef7 100%
-  );
+  background: linear-gradient(to right, #ffffff, #6dd5fa, #2980b9);
   border-radius: 3%;
 
   .main-weather-info,
