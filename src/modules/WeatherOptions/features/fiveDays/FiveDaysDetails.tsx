@@ -26,7 +26,12 @@ const FiveDaysDetails: FC<FiveDaysDetailsProps> = ({ day }) => {
 
   return (
     <>
-      <Button onClick={handleShow}>See details</Button>
+      <Button onClick={handleShow} className='show-modal-button'>
+        <Space>
+          <FontAwesomeIcon icon={solid('cloud-sun')} />
+        </Space>
+        See details
+      </Button>
       <Modal
         key={day.dt}
         visible={showModal}
