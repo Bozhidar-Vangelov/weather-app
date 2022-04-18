@@ -46,11 +46,11 @@ const weekendSlice = createSlice({
           },
         }))
         .filter((day: WeekendForecast) => {
-          return (
-            day.dt.startsWith('Fri') ||
-            day.dt.startsWith('Sat') ||
-            day.dt.startsWith('Sun')
-          );
+          const friday = moment().isoWeekday(5).format('ddd DD.MM.YYYY');
+          const saturday = moment().isoWeekday(6).format('ddd DD.MM.YYYY');
+          const sunday = moment().isoWeekday(7).format('ddd DD.MM.YYYY');
+
+          return day.dt === friday || day.dt === saturday || day.dt === sunday;
         });
     },
     fetchWeekendForecastFailure(state, action: PayloadAction<string>) {
