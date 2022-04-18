@@ -14,14 +14,6 @@ const FiveDaysDetails: FC<FiveDaysDetailsProps> = ({ day }) => {
 
   const handleShow = () => {
     setShowModal(!showModal);
-
-    console.log('show');
-  };
-
-  const handleCancel = () => {
-    setShowModal(!showModal);
-
-    console.log('cancel');
   };
 
   return (
@@ -37,7 +29,7 @@ const FiveDaysDetails: FC<FiveDaysDetailsProps> = ({ day }) => {
         visible={showModal}
         title={day.dt}
         okText='Confirm'
-        onCancel={handleCancel}
+        onCancel={handleShow}
         footer={null}
       >
         <Space className='forecast-container'>

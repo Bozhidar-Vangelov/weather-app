@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Tabs } from 'antd';
+import { Spin, Tabs } from 'antd';
 
 import { ForecastEnum, ForecastTypes } from '../../shared/types/forecastTypes';
 import FiveDays from './features/fiveDays/FiveDays';
@@ -26,7 +26,7 @@ const renderForecast = (forecast: ForecastTypes): JSX.Element => {
 };
 
 const WeatherForecast: React.FC = () => {
-  const { hasFetched } = useSelector(currentWeatherSelector);
+  const { hasFetched, loading } = useSelector(currentWeatherSelector);
 
   const { TabPane } = Tabs;
 
@@ -34,8 +34,8 @@ const WeatherForecast: React.FC = () => {
     console.log(key);
   }
 
-  if (!hasFetched) {
-    return <div>LOADING</div>;
+  if (!hasFetched || loading) {
+    return <Spin />;
   }
 
   return (
