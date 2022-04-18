@@ -1,0 +1,13 @@
+.ant-modal-content {
+  > * {
+    background: #3492d4;
+  }
+
+  .ant-modal-title {
+    display: flex;
+    justify-content: center;
+    color: #525252;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+}
