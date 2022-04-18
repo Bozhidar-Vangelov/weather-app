@@ -43,7 +43,7 @@ const FiveDays = () => {
             />
             <Space direction='vertical'>
               <Space>{day.weather[0].main}</Space>
-              <Space>
+              <Space direction='vertical'>
                 <Space align='start'>
                   <FontAwesomeIcon icon={solid('temperature-arrow-down')} />
                   {`${day.temp.min}°C`}
@@ -65,6 +65,10 @@ const FiveDays = () => {
                 <FontAwesomeIcon icon={solid('cloud-rain')} />
                 {`${day.pop}%`}
               </Space>
+              <Space>
+                <FontAwesomeIcon icon={solid('wind')} />
+                {`${day.wind_speed} m/s`}
+              </Space>
             </Space>
             <Space direction='vertical' className='forecast-card-details'>
               <Space>
@@ -74,6 +78,10 @@ const FiveDays = () => {
               <Space>
                 <FontAwesomeIcon icon={solid('sun')} />
                 {day.sunset}
+              </Space>
+              <Space>
+                <FontAwesomeIcon icon={solid('stopwatch')} />
+                {`${day.pressure} hPa`}
               </Space>
             </Space>
           </Space>

@@ -36,6 +36,14 @@ const fiveDaysSlice = createSlice({
         .map((day: FiveDaysForecast) => ({
           ...day,
           dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
+          pop: Number(day.pop.toString().slice(2)),
+          sunrise: moment.unix(Number(day.sunrise)).format('HH:mm'),
+          sunset: moment.unix(Number(day.sunset)).format('HH:mm'),
+          temp: {
+            ...day.temp,
+            max: Math.round(day.temp.max),
+            min: Math.round(day.temp.min),
+          },
         }));
     },
     fetchFiveDaysForecastFailure(state, action: PayloadAction<string>) {
@@ -73,6 +81,8 @@ export const fetchFiveDaysForecast =
           appid: API_ID,
         },
       });
+
+      console.log(data.daily);
 
       dispatch(fetchFiveDaysForecastSuccess(data.daily));
     } catch (error) {

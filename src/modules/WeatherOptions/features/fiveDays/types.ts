@@ -7,8 +7,8 @@ export interface FiveDaysForecastState {
 
 export interface FiveDaysForecast {
   dt: string;
-  sunrise: number;
-  sunset: number;
+  sunrise: string;
+  sunset: string;
   moonrise: number;
   moonset: number;
   moon_phase: number;
