@@ -51,6 +51,16 @@ const fiveDaysSlice = createSlice({
           hourly: day.hourly.map((hour: FiveDaysHourlyForecast) => ({
             ...hour,
             dt: moment.unix(Number(hour.dt)).format('HH:mm'),
+            pop: Number(day.pop.toString().slice(2)),
+            wind: {
+              ...hour.wind,
+              speed: Math.round(hour.wind.speed),
+            },
+            main: {
+              ...hour.main,
+              feels_like: Math.round(hour.main.feels_like),
+              temp: Math.round(hour.main.temp),
+            },
           })),
         }));
     },
@@ -110,7 +120,7 @@ export const fetchFiveDaysForecast =
         (day: FiveDaysForecast) => ({
           ...day,
           hourly: fiveDaysHourlyData.list.filter(
-            (hour: FiveDaysForecast) =>
+            (hour: FiveDaysHourlyForecast) =>
               moment.unix(Number(hour.dt)).format('DD') ===
               moment.unix(Number(day.dt)).format('DD')
           ),
