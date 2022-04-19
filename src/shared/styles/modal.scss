@@ -23,7 +23,13 @@
   margin-top: 2em;
   border-radius: 3%;
 
-  & :hover {
+  &:hover {
+    color: #00097c;
     background-color: #2980b9;
+  }
+
+  &:focus {
+    color: #2980b9;
+    background-color: #00097c;
   }
 }
