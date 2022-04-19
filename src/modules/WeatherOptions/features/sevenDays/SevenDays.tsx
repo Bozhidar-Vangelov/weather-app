@@ -31,6 +31,7 @@ const SevenDays = () => {
       <Space className='forecast-container'>
         {sevenDaysForecast.map((day) => (
           <ForecastCard
+            key={day.dt}
             info={day}
             description={
               <Space direction='vertical'>

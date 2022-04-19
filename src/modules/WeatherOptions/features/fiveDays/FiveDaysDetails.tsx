@@ -36,6 +36,7 @@ const FiveDaysDetails: FC<FiveDaysDetailsProps> = ({ day }) => {
         <Space className='forecast-container'>
           {day.hourly.map((hour) => (
             <ForecastCard
+              key={hour.dt}
               info={hour}
               description={
                 <Space direction='vertical'>

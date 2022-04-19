@@ -30,6 +30,7 @@ const Weekend = () => {
       <Space className='forecast-container weekend-container'>
         {weekendForecast.map((day) => (
           <ForecastCard
+            key={day.dt}
             info={day}
             description={
               <Space direction='vertical'>

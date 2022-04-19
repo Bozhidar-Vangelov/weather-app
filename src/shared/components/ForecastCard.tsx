@@ -27,8 +27,6 @@ const ForecastCard: React.FC<ForecastCardProps> = ({
   detailsSecondColumn,
   detailsModal,
 }) => {
-  console.log(info);
-
   return (
     <Card key={info.dt} className='forecast-card'>
       <Card.Meta title={info.dt} />

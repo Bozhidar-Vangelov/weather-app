@@ -31,6 +31,7 @@ const Hourly = () => {
       <Space className='forecast-container'>
         {hourly.map((hour) => (
           <ForecastCard
+            key={hour.dt}
             info={hour}
             description={
               <Space direction='vertical'>
