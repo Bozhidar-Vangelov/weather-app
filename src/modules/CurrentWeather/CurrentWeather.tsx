@@ -15,8 +15,6 @@ interface CurrentWeatherProps {
 const CurrentWeather: FC<CurrentWeatherProps> = ({ currentWeatherInfo }) => {
   const { loading, error } = useSelector(currentWeatherSelector);
 
-  console.log(currentWeatherInfo);
-
   return (
     <Spin spinning={loading}>
       <Space className='weather-info-container'>

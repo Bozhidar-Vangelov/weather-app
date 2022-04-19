@@ -16,7 +16,7 @@ const initialState: FiveDaysForecastState = {
   loading: false,
   error: null,
   hasFetched: false,
-  fiveDaysForecast: [] as FiveDaysForecast[],
+  fiveDaysForecast: [],
 };
 
 const fiveDaysSlice = createSlice({

@@ -30,16 +30,12 @@ const WeatherForecast: React.FC = () => {
 
   const { TabPane } = Tabs;
 
-  function callback(key: any) {
-    console.log(key);
-  }
-
   if (!hasFetched || loading) {
     return <Spin />;
   }
 
   return (
-    <Tabs onChange={callback} destroyInactiveTabPane={true}>
+    <Tabs destroyInactiveTabPane={true}>
       {forecastTabs.map((forecast) => (
         <TabPane tab={forecast.name} key={forecast.name}>
           {renderForecast(forecast)}

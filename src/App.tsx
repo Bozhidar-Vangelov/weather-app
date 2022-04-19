@@ -4,11 +4,9 @@ import ThemeProvider from './shared/components/ThemeProvider/ThemeProvider';
 
 const App = () => {
   return (
-    <>
-      <ThemeProvider>
-        <MainPage />
-      </ThemeProvider>
-    </>
+    <ThemeProvider>
+      <MainPage />
+    </ThemeProvider>
   );
 };
 
