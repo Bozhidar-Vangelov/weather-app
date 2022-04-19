@@ -24,20 +24,10 @@
   border-radius: 5%;
   font-weight: bold;
 
-  background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
-  //dark background
-  // background: linear-gradient(to right, #003973, #e5e5be);
-
   .ant-card-meta-title {
     font-size: 1.5em;
     font-weight: bold;
-    color: #00097c;
-    border-bottom: 2px solid #00097c;
     padding-bottom: 0.5em;
-  }
-
-  > * {
-    color: #00097c;
   }
 
   .ant-card-body {
@@ -66,6 +56,37 @@
       .forecast-card-details {
         align-items: baseline;
       }
+    }
+  }
+}
+
+.light {
+  .forecast-card {
+    background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+
+    .ant-card-meta-title {
+      color: #00097c;
+      border-bottom: 2px solid #00097c;
+    }
+
+    > * {
+      color: #00097c;
+    }
+  }
+}
+
+//set dark styles
+.dark {
+  .forecast-card {
+    background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+
+    .ant-card-meta-title {
+      color: #00097c;
+      border-bottom: 2px solid #00097c;
+    }
+
+    > * {
+      color: #00097c;
     }
   }
 }

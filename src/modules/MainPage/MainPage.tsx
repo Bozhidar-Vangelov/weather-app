@@ -28,7 +28,7 @@ const MainPage: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <Spin spinning={loading && isEmpty(currentWeatherInfo)}>
+    <Spin spinning={loading}>
       <SearchBar />
       <Space className='main-container' direction='vertical'>
         {!isEmpty(currentWeatherInfo) ? (

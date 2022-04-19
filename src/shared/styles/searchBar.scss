@@ -6,26 +6,12 @@
   .search-bar {
     width: 25em;
 
-    .ant-select-selector {
-      background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+    .ant-select-selection-search-input {
+      font-weight: bold;
 
-      .ant-select-selection-search-input {
-        color: #00097c;
-        font-weight: bold;
+      .ant-select-clear {
+        background: transparent;
       }
-    }
-
-    .ant-select-clear {
-      background: transparent;
-      color: #00097c;
-
-      &:hover {
-        color: #000546;
-      }
-    }
-
-    .ant-select-selection-placeholder {
-      color: #ffffff80;
     }
   }
 }
@@ -34,10 +20,66 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  color: #00097c;
   font-weight: bold;
 }
 
-.ant-select-dropdown {
-  background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+.light {
+  .ant-select-selector {
+    background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+
+    .ant-select-selection-search-input {
+      color: #00097c;
+    }
+  }
+
+  .ant-select-clear {
+    color: #00097c;
+
+    &:hover {
+      color: #000546;
+    }
+  }
+
+  .ant-select-selection-placeholder {
+    color: #ffffff80;
+  }
+
+  .search-bar-options-container {
+    color: #00097c;
+  }
+
+  .ant-select-dropdown {
+    background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+  }
+}
+
+//set dark styles
+.dark {
+  .ant-select-selector {
+    background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+
+    .ant-select-selection-search-input {
+      color: #00097c;
+    }
+  }
+
+  .ant-select-clear {
+    color: #00097c;
+
+    &:hover {
+      color: #000546;
+    }
+  }
+
+  .ant-select-selection-placeholder {
+    color: #ffffff80;
+  }
+
+  .search-bar-options-container {
+    color: #00097c;
+  }
+
+  .ant-select-dropdown {
+    background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+  }
 }

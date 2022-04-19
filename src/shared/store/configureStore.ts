@@ -6,6 +6,7 @@ import { fiveDaysForecastReducer } from '../../modules/WeatherOptions/features/f
 import { hourlyForecastReducer } from '../../modules/WeatherOptions/features/hourly/hourlySlice';
 import { sevenDaysForecastReducer } from '../../modules/WeatherOptions/features/sevenDays/sevenDaysSlice';
 import { weekendForecastReducer } from '../../modules/WeatherOptions/features/weekend/weekendSlice';
+import { themeReducer } from '../components/ThemeProvider/themeProviderSlice';
 
 export const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ export const store = configureStore({
     hourlyForecast: hourlyForecastReducer,
     sevenDaysForecast: sevenDaysForecastReducer,
     weekendForecast: weekendForecastReducer,
+    theme: themeReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
