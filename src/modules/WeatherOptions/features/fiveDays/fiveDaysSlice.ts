@@ -48,6 +48,7 @@ const fiveDaysSlice = createSlice({
             max: Math.round(day.temp.max),
             min: Math.round(day.temp.min),
           },
+          wind_speed: Math.round(day.wind_speed),
           hourly: day.hourly.map((hour: FiveDaysHourlyForecast) => ({
             ...hour,
             dt: moment.unix(Number(hour.dt)).format('HH:mm'),
