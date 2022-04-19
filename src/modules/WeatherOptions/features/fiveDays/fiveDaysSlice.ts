@@ -36,7 +36,7 @@ const fiveDaysSlice = createSlice({
       state.hasFetched = true;
       state.error = null;
       state.fiveDaysForecast = action.payload
-        .slice(0, 5)
+        .slice(1, 6)
         .map((day: FiveDaysForecast) => ({
           ...day,
           dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),

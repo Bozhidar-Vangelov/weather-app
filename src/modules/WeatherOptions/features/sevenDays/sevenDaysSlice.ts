@@ -32,7 +32,7 @@ const sevenDaysSlice = createSlice({
       state.hasFetched = true;
       state.error = null;
       state.sevenDaysForecast = action.payload
-        .slice(0, 7)
+        .slice(1, 8)
         .map((day: SevenDaysForecast) => ({
           ...day,
           dt: moment.unix(Number(day.dt)).format('ddd DD.MM.YYYY'),
