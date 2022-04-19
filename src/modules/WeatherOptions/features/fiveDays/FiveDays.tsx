@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
 import { regular, solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Card, Space, Spin } from 'antd';
+import { Space, Spin } from 'antd';
 
 import { currentWeatherSelector } from '../../../CurrentWeather/currentWeatherSlice';
 import {

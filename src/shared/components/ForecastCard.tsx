@@ -1,11 +1,17 @@
 import { Card, Space } from 'antd';
+
 import { FiveDaysForecast } from '../../modules/WeatherOptions/features/fiveDays/types';
+import { FiveDaysHourlyForecast } from '../../modules/WeatherOptions/features/fiveDays/types';
 import { SevenDaysForecast } from '../../modules/WeatherOptions/features/sevenDays/types';
 import { Hourly } from '../../modules/WeatherOptions/features/hourly/types';
 import { WeekendForecast } from '../../modules/WeatherOptions/features/weekend/types';
-
 interface ForecastCardProps {
-  info: FiveDaysForecast | SevenDaysForecast | Hourly | WeekendForecast;
+  info:
+    | FiveDaysForecast
+    | FiveDaysHourlyForecast
+    | SevenDaysForecast
+    | Hourly
+    | WeekendForecast;
   description?: JSX.Element;
   feelsLike?: JSX.Element;
   detailsFirstColumn?: JSX.Element;
@@ -21,6 +27,8 @@ const ForecastCard: React.FC<ForecastCardProps> = ({
   detailsSecondColumn,
   detailsModal,
 }) => {
+  console.log(info);
+
   return (
     <Card key={info.dt} className='forecast-card'>
       <Card.Meta title={info.dt} />
