@@ -5,6 +5,10 @@
   overflow-x: scroll;
 }
 
+.weekend-container {
+  justify-content: space-evenly;
+}
+
 .forecast-container::-webkit-scrollbar {
   height: 1.8em;
 }

@@ -1,13 +1,18 @@
-.ant-modal-content {
-  > * {
-    border: none;
-  }
+.ant-modal {
+  width: 60% !important;
 
-  .ant-modal-title {
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 1.5em;
+  .ant-modal-content {
+    > * {
+      border: none;
+      background: transparent;
+    }
+
+    .ant-modal-title {
+      display: flex;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.5em;
+    }
   }
 }
 
@@ -20,14 +25,12 @@
 
 .light {
   .ant-modal-content {
-    > * {
-      background: #3492d4;
-      background-image: url('https://img.freepik.com/free-vector/sky-background-pastel-paper-cut-design-vector_53876-144660.jpg?t=st=1650308794~exp=1650309394~hmac=e1db7e0d6e9841aae3da38cbaf052f6f2f710acc2eee7ec724379439e8be452a&w=996');
-      background-repeat: no-repeat;
+    background-image: url('https://img.freepik.com/free-vector/sky-background-pastel-paper-cut-design-vector_53876-144660.jpg?t=st=1650308794~exp=1650309394~hmac=e1db7e0d6e9841aae3da38cbaf052f6f2f710acc2eee7ec724379439e8be452a&w=996');
+    background-repeat: no-repeat;
+    background-size: 100%;
 
-      .ant-modal-title {
-        color: #00097c;
-      }
+    .ant-modal-title {
+      color: #00097c;
     }
   }
 
@@ -49,14 +52,12 @@
 
 .dark {
   .ant-modal-content {
-    > * {
-      background: #3492d4;
-      background-image: url('https://img.freepik.com/free-vector/wireframe-landscape-against-starry-night-sky_1048-12248.jpg?w=1380&t=st=1650310602~exp=1650311202~hmac=1a77b5cf6833742b98b15585faa3d136d61ea5e7a7419033c3cad99c9457056d');
-      background-repeat: no-repeat;
+    background-image: url('https://img.freepik.com/free-vector/full-moon-night-ocean-cartoon-illustration_33099-2308.jpg?t=st=1650367798~exp=1650368398~hmac=d4c1da4737b2d86cba5054089672395ee3e6cbb155daaf5d785402f0c6855b86&w=1380');
+    background-repeat: no-repeat;
+    background-size: 100%;
 
-      .ant-modal-title {
-        color: #00097c;
-      }
+    .ant-modal-title {
+      color: #00097c;
     }
   }
 
