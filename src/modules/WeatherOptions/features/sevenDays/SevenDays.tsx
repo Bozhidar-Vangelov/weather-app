@@ -36,7 +36,7 @@ const SevenDays = () => {
             description={
               <Space direction='vertical'>
                 <Space>{day.weather[0].main}</Space>
-                <Space>
+                <Space direction='vertical'>
                   <Space align='start'>
                     <FontAwesomeIcon icon={solid('temperature-arrow-down')} />
                     {`${day.temp.min}°C`}

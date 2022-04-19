@@ -35,7 +35,13 @@ const Hourly = () => {
             info={hour}
             description={
               <Space direction='vertical'>
-                {`${hour.weather[0].description} ${hour.temp}°C`}
+                <Space>{hour.weather[0].description}</Space>
+                <Space>{`${hour.temp}°C`}</Space>
+              </Space>
+            }
+            feelsLike={
+              <Space className='forecast-card-feels-like'>
+                Feels Like {`${hour.feels_like}°C`}
               </Space>
             }
             detailsFirstColumn={

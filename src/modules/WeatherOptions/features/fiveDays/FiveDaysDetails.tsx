@@ -40,7 +40,8 @@ const FiveDaysDetails: FC<FiveDaysDetailsProps> = ({ day }) => {
               info={hour}
               description={
                 <Space direction='vertical'>
-                  {`${hour.weather[0].description} ${hour.main.temp}°C`}
+                  <Space>{hour.weather[0].description}</Space>
+                  <Space>{`${hour.main.temp}°C`}</Space>
                 </Space>
               }
               feelsLike={

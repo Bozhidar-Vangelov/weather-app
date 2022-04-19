@@ -1,6 +1,7 @@
 .forecast-container {
   margin: 0 2em;
   display: flex;
+  justify-content: space-between;
   overflow-x: scroll;
 }
 
@@ -20,7 +21,6 @@
 .forecast-card {
   margin: 1em;
   border: none;
-
   border-radius: 5%;
   font-weight: bold;
 
@@ -48,12 +48,14 @@
       font-size: 1.3em;
       text-transform: capitalize;
       text-align: baseline;
-      margin-bottom: 1em;
+      margin: 1em 0em 1em 0em;
+      display: flex;
+      justify-content: space-around;
     }
 
     .forecast-card-feels-like {
-      margin-bottom: 1.5em;
-      font-size: 1.2em;
+      margin-bottom: 1em;
+      font-size: 1.1em;
       text-align: center;
     }
 
