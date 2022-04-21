@@ -1,4 +1,4 @@
-import { createSlice, Dispatch } from '@reduxjs/toolkit';
+import { createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import moment from 'moment';
 
@@ -24,13 +24,34 @@ const currentWeatherSlice = createSlice({
       state.hasFetched = false;
       state.error = null;
     },
-    fetchCurrentWeatherSuccess(state, action) {
+    fetchCurrentWeatherSuccess(
+      state,
+      action: PayloadAction<CurrentWeatherInfo>
+    ) {
       state.loading = false;
       state.hasFetched = true;
       state.error = null;
-      state.currentWeatherInfo = action.payload;
+
+      state.currentWeatherInfo = {
+        ...action.payload,
+        sys: {
+          ...action.payload.sys,
+          sunrise: moment
+            .unix(Number(action.payload.sys.sunrise))
+            .format('HH:mm'),
+          sunset: moment
+            .unix(Number(action.payload.sys.sunset))
+            .format('HH:mm'),
+        },
+
+        main: {
+          ...action.payload.main,
+          feels_like: Math.round(action.payload.main.feels_like),
+          temp: Math.round(action.payload.main.temp),
+        },
+      };
     },
-    fetchCurrentWeatherFailure(state, action) {
+    fetchCurrentWeatherFailure(state, action: PayloadAction<string>) {
       state.loading = false;
       state.error = action.payload;
     },
@@ -64,23 +85,8 @@ export const fetchCurrentWeather =
         },
       });
 
-      const currentWeather = {
-        ...data,
-        sys: {
-          ...data.sys,
-          sunrise: moment.unix(data.sys.sunrise).format('HH:mm'),
-          sunset: moment.unix(data.sys.sunset).format('HH:mm'),
-        },
-
-        main: {
-          ...data.main,
-          feels_like: Math.round(data.main.feels_like),
-          temp: Math.round(data.main.temp),
-        },
-      };
-
-      dispatch(fetchCurrentWeatherSuccess(currentWeather));
+      dispatch(fetchCurrentWeatherSuccess(data));
     } catch (error) {
-      dispatch(fetchCurrentWeatherFailure(error));
+      dispatch(fetchCurrentWeatherFailure((error as Error).message));
     }
   };
