@@ -32,20 +32,20 @@
 //set dark styles
 .dark {
   .ant-tabs-tab-btn {
-    color: #2980b9;
+    color: #eafaff;
 
     &:hover {
-      color: #00097c;
+      color: #fff184;
     }
   }
 
   .ant-tabs-tab-active {
     > * {
-      color: #00097c !important;
+      color: #fff184 !important;
     }
   }
 
   .ant-tabs-ink-bar {
-    background-color: #00097c;
+    background-color: #fff184;
   }
 }

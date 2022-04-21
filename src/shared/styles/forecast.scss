@@ -82,15 +82,15 @@
 //set dark styles
 .dark {
   .forecast-card {
-    background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+    background: linear-gradient(to left, #fff184, #014493, #010751);
 
     .ant-card-meta-title {
-      color: #00097c;
-      border-bottom: 2px solid #00097c;
+      color: #eafaff;
+      border-bottom: 2px solid #eafaff;
     }
 
     > * {
-      color: #00097c;
+      color: #eafaff;
     }
   }
 }

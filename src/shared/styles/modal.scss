@@ -28,8 +28,10 @@
     background-image: url('https://img.freepik.com/free-vector/sky-background-pastel-paper-cut-design-vector_53876-144660.jpg?t=st=1650308794~exp=1650309394~hmac=e1db7e0d6e9841aae3da38cbaf052f6f2f710acc2eee7ec724379439e8be452a&w=996');
     background-repeat: no-repeat;
     background-size: 100%;
+    opacity: 0.95;
 
     .ant-modal-title {
+      font-size: 2em;
       color: #00097c;
     }
   }
@@ -52,18 +54,20 @@
 
 .dark {
   .ant-modal-content {
-    background-image: url('https://img.freepik.com/free-vector/full-moon-night-ocean-cartoon-illustration_33099-2308.jpg?t=st=1650367798~exp=1650368398~hmac=d4c1da4737b2d86cba5054089672395ee3e6cbb155daaf5d785402f0c6855b86&w=1380');
+    background-image: url('../../assets/dark-background.jpg');
     background-repeat: no-repeat;
     background-size: 100%;
+    opacity: 0.95;
 
     .ant-modal-title {
-      color: #00097c;
+      font-size: 2em;
+      color: #eafaff;
     }
   }
 
   .show-modal-button {
-    background-color: #297fb9af;
-    color: #00097c;
+    background-color: #010751;
+    color: #eafaff;
 
     &:hover {
       color: #00097c;

@@ -56,19 +56,20 @@
 //set dark styles
 .dark {
   .ant-select-selector {
-    background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+    background: linear-gradient(to left, #fff184, #014493, #010751);
 
     .ant-select-selection-search-input {
-      color: #00097c;
+      color: #eafaff;
     }
   }
 
   .ant-select-clear {
-    color: #00097c;
+    color: #000546;
+  }
 
-    &:hover {
-      color: #000546;
-    }
+  .ant-select-item-option:hover,
+  .ant-select-item-option-active {
+    background-color: #014493;
   }
 
   .ant-select-selection-placeholder {
@@ -76,10 +77,10 @@
   }
 
   .search-bar-options-container {
-    color: #00097c;
+    color: #eafaff;
   }
 
   .ant-select-dropdown {
-    background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+    background: linear-gradient(to left, #fff184, #014493, #010751);
   }
 }
