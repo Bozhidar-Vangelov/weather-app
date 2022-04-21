@@ -6,28 +6,28 @@
   font-size: 1.3em;
   font-weight: bold;
   width: 60%;
-  margin: 0 auto;
-  border-radius: 3%;
+  margin: 2em auto;
 
   .main-weather-info,
   .secondary-weather-info {
     flex-direction: column;
-    padding: 1em;
-    margin: 1em;
+    padding: 2em;
+    border-radius: 3%;
   }
 
   .main-weather-info {
     text-transform: capitalize;
-  }
-
-  .main-weather-info {
     font-size: 1.7em;
+    text-align: center;
   }
 }
 
 .light {
   .weather-info-container {
     color: #00097c;
+  }
+  .main-weather-info,
+  .secondary-weather-info {
     background: linear-gradient(to right, #ffffff, #6dd5fa, #2980b9);
   }
 }
@@ -36,6 +36,10 @@
 .dark {
   .weather-info-container {
     color: #eafaff;
-    background: linear-gradient(to right, #fff184, #014493, #010751);
+
+    .main-weather-info,
+    .secondary-weather-info {
+      background: linear-gradient(to right, #fff184, #014493, #010751);
+    }
   }
 }
