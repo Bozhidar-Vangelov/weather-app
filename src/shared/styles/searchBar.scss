@@ -50,10 +50,13 @@
 
   .ant-select-dropdown {
     background: linear-gradient(to left, #ffffff, #6dd5fa, #2980b9);
+
+    .ant-select-item-empty {
+      color: #00087c7c;
+    }
   }
 }
 
-//set dark styles
 .dark {
   .ant-select-selector {
     background: linear-gradient(to left, #fff184, #014493, #010751);
@@ -64,6 +67,7 @@
   }
 
   .ant-select-clear {
+    background-color: transparent;
     color: #000546;
   }
 
@@ -82,5 +86,9 @@
 
   .ant-select-dropdown {
     background: linear-gradient(to left, #fff184, #014493, #010751);
+
+    .ant-select-item-empty {
+      color: #eafaff75;
+    }
   }
 }
