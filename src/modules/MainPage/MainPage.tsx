@@ -12,6 +12,7 @@ import { fetchAllCities } from '../../shared/slices/allCities/allCitiesSlice';
 import CurrentWeather from '../CurrentWeather/CurrentWeather';
 import SearchBar from '../SearchBar/SearchBar';
 import WeatherForecast from '../WeatherOptions/WeatherForecast';
+import NotFound from '../../shared/components/NotFound';
 
 const MainPage: React.FC = () => {
   const dispatch = useDispatch();
@@ -34,7 +35,7 @@ const MainPage: React.FC = () => {
         {!isEmpty(currentWeatherInfo) ? (
           <CurrentWeather currentWeatherInfo={currentWeatherInfo} />
         ) : (
-          <></>
+          <NotFound />
         )}
       </Space>
       <WeatherForecast />
